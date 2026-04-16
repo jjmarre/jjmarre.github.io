@@ -1,1 +1,1230 @@
-# jjmarre.github.io
+# jjmarre.github.io <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Macro Study Companion — Ch 26–32</title>
+<style>
+  :root {
+    --bg: #0f1420;
+    --bg-soft: #161d2e;
+    --bg-card: #1c2438;
+    --bg-elev: #232c44;
+    --line: #2d3753;
+    --text: #e8ecf6;
+    --text-dim: #a3acc6;
+    --text-mute: #6f7a96;
+    --peach: #ffb38a;
+    --mint: #8de1bf;
+    --lavender: #b8a6f0;
+    --rose: #ff8fa8;
+    --gold: #ffd479;
+    --sky: #7cc7ff;
+    --good: #6cd9a8;
+    --bad: #ff7a8a;
+    --warn: #ffc266;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.55; }
+  body { min-height: 100vh; padding-bottom: 60px; }
+  .header {
+    background: linear-gradient(135deg, #1a2238 0%, #232c4a 100%);
+    border-bottom: 1px solid var(--line);
+    padding: 22px 32px;
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(8px);
+  }
+  .header h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    font-family: 'Georgia', serif;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+  .header .sub { color: var(--text-dim); font-size: 13px; margin-top: 4px; }
+  .header-row { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
+  .hi { color: var(--peach); }
+
+  .tabs {
+    display: flex; gap: 4px; padding: 16px 32px 0; flex-wrap: wrap;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 86px; z-index: 40;
+  }
+  .tab {
+    background: transparent; color: var(--text-dim); border: none;
+    padding: 10px 18px; cursor: pointer; font-size: 14px; font-weight: 500;
+    border-radius: 8px 8px 0 0; transition: all 0.15s;
+    border-bottom: 2px solid transparent;
+  }
+  .tab:hover { color: var(--text); background: var(--bg-soft); }
+  .tab.active { color: var(--peach); border-bottom-color: var(--peach); background: var(--bg-soft); }
+  .tab.dashboard { color: var(--mint); }
+  .tab.dashboard.active { color: var(--mint); border-bottom-color: var(--mint); }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px; }
+
+  /* Section toggle inside chapter */
+  .mode-toggle {
+    display: inline-flex; background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: 10px; padding: 4px; margin-bottom: 24px;
+  }
+  .mode-btn {
+    background: transparent; color: var(--text-dim); border: none; padding: 8px 18px;
+    border-radius: 7px; cursor: pointer; font-size: 13px; font-weight: 500;
+  }
+  .mode-btn.active { background: var(--peach); color: #1a1a1a; }
+
+  h2 { font-family: 'Georgia', serif; font-weight: 600; font-size: 26px; margin: 0 0 8px; color: var(--text); }
+  h3 { font-family: 'Georgia', serif; font-weight: 600; font-size: 19px; margin: 28px 0 10px; color: var(--peach); }
+  h4 { font-size: 15px; margin: 18px 0 6px; color: var(--mint); font-weight: 600; }
+  p { color: var(--text-dim); margin: 8px 0; }
+
+  .card {
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 22px; margin: 16px 0;
+  }
+  .card-tight { padding: 16px 18px; }
+  .accent-l { border-left: 3px solid var(--lavender); }
+  .accent-m { border-left: 3px solid var(--mint); }
+  .accent-p { border-left: 3px solid var(--peach); }
+  .accent-r { border-left: 3px solid var(--rose); }
+  .accent-g { border-left: 3px solid var(--gold); }
+
+  .pill { display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; }
+  .pill-peach { background: rgba(255,179,138,0.15); color: var(--peach); }
+  .pill-mint { background: rgba(141,225,191,0.15); color: var(--mint); }
+  .pill-lav { background: rgba(184,166,240,0.15); color: var(--lavender); }
+  .pill-gold { background: rgba(255,212,121,0.15); color: var(--gold); }
+  .pill-good { background: rgba(108,217,168,0.18); color: var(--good); }
+  .pill-bad { background: rgba(255,122,138,0.18); color: var(--bad); }
+
+  .formula {
+    background: var(--bg-elev); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 18px; font-family: 'Georgia', serif; font-size: 16px; color: var(--gold);
+    margin: 12px 0; display: block;
+  }
+  .formula em { color: var(--text-dim); font-size: 13px; font-family: 'Inter', sans-serif; font-style: normal; display: block; margin-top: 6px; }
+
+  ul.terms { list-style: none; padding: 0; }
+  ul.terms li { padding: 10px 0; border-bottom: 1px dashed var(--line); }
+  ul.terms li:last-child { border-bottom: none; }
+  ul.terms strong { color: var(--mint); }
+
+  /* Flashcards */
+  .flashcard-container { perspective: 1200px; min-height: 280px; margin: 20px 0; }
+  .flashcard {
+    position: relative; width: 100%; min-height: 260px;
+    transform-style: preserve-3d; transition: transform 0.5s;
+    cursor: pointer;
+  }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .face {
+    position: absolute; inset: 0; backface-visibility: hidden;
+    border-radius: 16px; padding: 32px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+  }
+  .face.front { background: linear-gradient(135deg, #2a3554 0%, #1c2438 100%); border: 1px solid var(--line); }
+  .face.back { background: linear-gradient(135deg, #2c3a3a 0%, #1d2a2a 100%); border: 1px solid var(--line); transform: rotateY(180deg); }
+  .face .term { font-size: 22px; font-family: 'Georgia', serif; color: var(--peach); margin-bottom: 8px; }
+  .face .def { font-size: 15px; color: var(--text); }
+  .face .hint { font-size: 11px; color: var(--text-mute); margin-top: 14px; text-transform: uppercase; letter-spacing: 1px; }
+
+  .flashcard-controls { display: flex; gap: 10px; justify-content: center; align-items: center; margin: 14px 0; flex-wrap: wrap; }
+  .fc-btn {
+    background: var(--bg-card); color: var(--text); border: 1px solid var(--line);
+    padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500;
+  }
+  .fc-btn:hover { background: var(--bg-elev); }
+  .fc-btn.know { color: var(--good); border-color: rgba(108,217,168,0.4); }
+  .fc-btn.dontknow { color: var(--bad); border-color: rgba(255,122,138,0.4); }
+  .fc-counter { color: var(--text-mute); font-size: 13px; }
+
+  /* Quiz */
+  .quiz-q {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px; margin: 14px 0;
+  }
+  .quiz-q .qnum { color: var(--text-mute); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .quiz-q .qtext { font-size: 15px; color: var(--text); margin-bottom: 14px; line-height: 1.5; }
+  .quiz-q .qtype { font-size: 11px; color: var(--lavender); margin-left: 8px; }
+  .opt {
+    display: block; padding: 10px 14px; margin: 6px 0; background: var(--bg-elev);
+    border: 1px solid var(--line); border-radius: 8px; cursor: pointer;
+    color: var(--text); font-size: 14px; transition: all 0.12s;
+  }
+  .opt:hover { border-color: var(--peach); background: #2a3450; }
+  .opt.selected { border-color: var(--peach); background: #2a3450; color: var(--peach); }
+  .opt.correct { border-color: var(--good); background: rgba(108,217,168,0.1); color: var(--good); }
+  .opt.wrong { border-color: var(--bad); background: rgba(255,122,138,0.1); color: var(--bad); }
+  .text-input {
+    width: 100%; padding: 10px 14px; background: var(--bg-elev);
+    border: 1px solid var(--line); border-radius: 8px; color: var(--text);
+    font-size: 14px; font-family: inherit;
+  }
+  .text-input:focus { outline: none; border-color: var(--peach); }
+  textarea.text-input { min-height: 90px; resize: vertical; font-family: inherit; }
+
+  .submit-btn {
+    background: linear-gradient(135deg, var(--peach), #ff9970);
+    color: #1a1a1a; border: none; padding: 12px 28px; font-size: 14px; font-weight: 600;
+    border-radius: 10px; cursor: pointer; margin: 16px 8px 16px 0;
+  }
+  .submit-btn:hover { transform: translateY(-1px); }
+  .secondary-btn {
+    background: var(--bg-card); color: var(--text); border: 1px solid var(--line);
+    padding: 12px 24px; font-size: 14px; border-radius: 10px; cursor: pointer; font-weight: 500;
+  }
+  .secondary-btn:hover { background: var(--bg-elev); }
+
+  .feedback {
+    margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 13px;
+    border-left: 3px solid;
+  }
+  .feedback.right { background: rgba(108,217,168,0.08); border-color: var(--good); color: var(--text); }
+  .feedback.wrong-fb { background: rgba(255,122,138,0.08); border-color: var(--bad); color: var(--text); }
+  .feedback strong { color: var(--peach); }
+
+  .grade-box {
+    background: linear-gradient(135deg, var(--bg-card), var(--bg-elev));
+    border: 1px solid var(--line); border-radius: 16px; padding: 28px;
+    text-align: center; margin: 20px 0;
+  }
+  .grade-num { font-size: 48px; font-family: 'Georgia', serif; color: var(--peach); font-weight: 600; }
+  .grade-label { color: var(--text-dim); font-size: 14px; }
+
+  /* Dashboard */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 18px 0; }
+  .stat {
+    background: var(--bg-card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px;
+  }
+  .stat .num { font-size: 28px; font-family: 'Georgia', serif; color: var(--peach); }
+  .stat .lbl { color: var(--text-dim); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .gap-item {
+    background: var(--bg-card); border: 1px solid var(--line); border-left: 3px solid var(--warn);
+    padding: 14px 18px; border-radius: 10px; margin: 10px 0;
+  }
+  .gap-item .topic { font-weight: 600; color: var(--gold); }
+  .gap-item .detail { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+
+  /* Graphs */
+  .graph-wrap { background: var(--bg-elev); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin: 14px 0; }
+  .graph-cap { color: var(--text-dim); font-size: 12px; text-align: center; margin-top: 8px; font-style: italic; }
+  svg text { fill: var(--text-dim); font-family: 'Inter', sans-serif; font-size: 11px; }
+  svg .axis { stroke: var(--text-mute); stroke-width: 1; }
+  svg .gridline { stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 3; }
+  svg .label { fill: var(--text); font-weight: 600; font-size: 12px; }
+
+  .friendly { color: var(--mint); font-style: italic; font-size: 14px; }
+  .hr { border: none; border-top: 1px solid var(--line); margin: 24px 0; }
+  .reset-btn { background: transparent; color: var(--text-mute); border: 1px solid var(--line); padding: 6px 14px; border-radius: 8px; font-size: 12px; cursor: pointer; }
+  .reset-btn:hover { color: var(--bad); border-color: var(--bad); }
+
+  .resume-banner {
+    background: linear-gradient(90deg, rgba(141,225,191,0.12), rgba(184,166,240,0.12));
+    border: 1px solid rgba(141,225,191,0.3); border-radius: 10px; padding: 12px 18px;
+    margin-bottom: 18px; color: var(--mint); font-size: 13px;
+  }
+  @media (max-width: 700px) {
+    .container { padding: 18px; }
+    .header, .tabs { padding-left: 18px; padding-right: 18px; }
+    .tabs { top: 92px; overflow-x: auto; flex-wrap: nowrap; }
+    .tab { white-space: nowrap; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-row">
+    <div>
+      <h1>Macro Study Companion <span style="color:var(--text-mute); font-size: 14px; font-weight: 400;">— Cowen & Tabarrok, Ch 26–32</span></h1>
+      <div class="sub">Hi friend <span class="hi">👋</span> Pick a chapter, learn it, then test yourself. Your progress saves automatically.</div>
+    </div>
+    <div id="header-stats" style="font-size:12px; color:var(--text-mute);"></div>
+  </div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="container" id="content"></div>
+
+<script>
+/* ============================================
+   PERSISTENT STORAGE WRAPPER
+   ============================================ */
+const Store = {
+  async get(key, fallback) {
+    try {
+      const r = await window.storage.get(key);
+      return r ? JSON.parse(r.value) : fallback;
+    } catch { return fallback; }
+  },
+  async set(key, value) {
+    try { await window.storage.set(key, JSON.stringify(value)); } catch(e) { console.warn(e); }
+  },
+  async clear(key) {
+    try { await window.storage.delete(key); } catch {}
+  }
+};
+
+/* ============================================
+   CHAPTER DATA
+   ============================================ */
+const CHAPTERS = [
+  /* ---------------- CHAPTER 26 ---------------- */
+  {
+    id: 26, title: "GDP & Measuring Output",
+    teach: [
+      { type: 'h3', text: "What GDP actually is" },
+      { type: 'p', text: "GDP = the <b>market value</b> of all <b>finished</b> goods and services <b>produced within a country</b> in a <b>year</b>. Each bolded word matters and shows up on exams as 'why is X not in GDP?' questions." },
+      { type: 'card', accent: 'p', html: "<b>Why each word matters:</b><ul><li><b>Market value</b> — uses prices to weight things (a car > a chicken)</li><li><b>Finished</b> — only the final product (the laptop, not the chip inside)</li><li><b>Produced</b> — used cars, stocks, old houses don't count (not produced this year)</li><li><b>Within a country</b> — GDP = inside US borders. <span class='pill pill-mint'>GNP</span> = by US citizens anywhere</li><li><b>In a year</b> — annual flow, not stock of wealth</li></ul>" },
+      { type: 'h3', text: "Nominal vs Real GDP" },
+      { type: 'p', text: "Nominal uses <b>current prices</b>. Real uses <b>constant prices</b> (one base year), so it strips out inflation and shows true production change." },
+      { type: 'formula', text: "Growth Rate = (New − Old) / Old × 100%", note: "Always use REAL GDP for standard-of-living comparisons" },
+      { type: 'formula', text: "GDP Deflator = (Nominal GDP / Real GDP) × 100", note: "A price index — measures how much prices have risen since the base year" },
+      { type: 'h3', text: "The Spending Approach (the big one)" },
+      { type: 'formula', text: "GDP = C + I + G + NX", note: "Consumption + Investment + Government purchases + Net Exports (X − M)" },
+      { type: 'card', accent: 'l', html: "<b>Watch the gotchas:</b><ul><li><b>C</b> includes healthcare even if government pays. Includes education (BEA classifies it as consumption, not investment)</li><li><b>I</b> = new tools/plant/equipment. <i>Buying stock is NOT investment</i> — that's just transfer of ownership. New homes ARE investment.</li><li><b>G</b> = purchases of goods/services only. <b>Transfers</b> (Social Security, Medicare cash) are NOT in G — they'd double-count when recipient spends them.</li><li><b>NX</b> = X − M. We subtract imports because they're already inside C, I, or G but weren't produced here.</li></ul>" },
+      { type: 'h3', text: "The Sinking Container Ship Trick" },
+      { type: 'p', text: "Imports look like a 'subtraction' but eliminating imports doesn't raise GDP. If $10B of iPhones never arrive, both C and M drop by $10B — GDP unchanged. <b>Imports aren't bad for GDP; the formula just nets them out.</b> This is a classic trick question." },
+      { type: 'h3', text: "Problems with GDP (your assignment territory)" },
+      { type: 'card', accent: 'r', html: "<ul><li><b>Underground economy</b> not counted (10–20% in US, 41% in Latin America)</li><li><b>Nonpriced production</b> not counted (housework, volunteering, free YouTube)</li><li><b>Bads</b> not subtracted (pollution, crime)</li><li><b>Health/longevity</b> not counted (a year of life valued ~$150k)</li><li>Doesn't show <b>distribution</b> — averages hide inequality</li></ul>" },
+      { type: 'p', html: "<i class='friendly'>This is exactly what your Hurricane Harvey assignment was about — rebuilding gets counted but the lost lives, displaced families, and destroyed assets don't get subtracted. GDP can rise during disasters and that's the metric's failure, not a real benefit.</i>" }
+    ],
+    flashcards: [
+      { term: "GDP", def: "Market value of all finished goods and services produced within a country in a year." },
+      { term: "Nominal GDP", def: "GDP at current-year prices (mixes price changes and quantity changes)." },
+      { term: "Real GDP", def: "GDP at constant base-year prices (strips out inflation)." },
+      { term: "GDP Deflator", def: "(Nominal/Real) × 100. A price index covering all GDP components." },
+      { term: "Intermediate good", def: "Sold to firms for processing into a final good. NOT counted directly (avoid double-counting)." },
+      { term: "Investment (I)", def: "Purchase of new capital — tools, plant, equipment. Includes new homes and inventory changes." },
+      { term: "Transfer payments", def: "Government cash to citizens (Social Security, welfare). NOT in G — would double-count." },
+      { term: "Net Exports (NX)", def: "Exports minus Imports (X − M)." },
+      { term: "Recession", def: "Significant, widespread decline in real GDP, income, employment, and sales lasting more than a few months. NBER calls them." },
+      { term: "GNP vs GDP", def: "GNP = by citizens anywhere. GDP = inside borders by anyone." }
+    ],
+    formulas: [
+      { f: "GDP = C + I + G + NX", n: "National spending approach" },
+      { f: "Growth Rate = (Y₂ − Y₁) / Y₁ × 100%", n: "Use Real GDP for living standards" },
+      { f: "GDP Deflator = (Nominal GDP / Real GDP) × 100", n: "Price index" },
+      { f: "Real GDP = Nominal GDP / (Deflator/100)", n: "Solve for real when given nominal & deflator" }
+    ],
+    graphs: [],
+    quiz: [
+      { type:'tf', q:"A used car sold this year adds to this year's GDP.", a:false, ex:"GDP only counts goods PRODUCED this year. Used cars were produced in a prior year. The dealer's commission service does count, though." },
+      { type:'tf', q:"Buying 100 shares of Apple stock counts as investment in GDP.", a:false, ex:"Buying stock is just a change of ownership — not investment in the economic sense. Investment in GDP means new physical capital (factories, equipment, new homes)." },
+      { type:'mc', q:"Which is NOT counted in US GDP?", opts:["A French tourist's hotel stay in NYC","A pizza made and sold in Chicago","A US-made car sold in Germany","Software written by an American living in Tokyo"], a:3, ex:"GDP is location-based, not citizenship-based. The American in Tokyo contributes to JAPANESE GDP. (That last one would count toward US GNP though.)" },
+      { type:'mc', q:"Hurricane Harvey destroys $50B of housing. Rebuilding costs $50B. The net effect on GDP is roughly:", opts:["−$50B (loss is destruction)","$0 (cancels out)","+$50B (rebuilding adds to I and G)","Cannot be determined"], a:2, ex:"GDP only counts the rebuilding flow (added to I and G). The destroyed wealth was a STOCK, not flow, so it isn't subtracted. This is exactly why the CNBC headline was silly — GDP rising doesn't mean society is better off." },
+      { type:'calc', q:"Nominal GDP = $25 trillion. Real GDP (in base-year dollars) = $22 trillion. Calculate the GDP deflator.", a:113.64, tol:0.5, ex:"Deflator = (Nominal/Real) × 100 = (25/22) × 100 ≈ 113.64. This means prices are about 13.6% higher than the base year." },
+      { type:'calc', q:"Real GDP 2017 = $19.5 trillion. Real GDP 2018 = $20.07 trillion. Calculate the real growth rate (%).", a:2.92, tol:0.1, ex:"Growth = (20.07 − 19.5) / 19.5 × 100 = 2.92%. Around the long-term US average of ~3%." },
+      { type:'mc', q:"Which is INCLUDED in GDP?", opts:["Mom cooking dinner at home","A volunteer cleaning a park","A nanny paid $20k","Friends helping you move"], a:2, ex:"Only the paid nanny is a market transaction. The others are nonpriced production — valuable but not in GDP. This biases comparisons across countries (more work happens at home in poorer nations)." },
+      { type:'tf', q:"If imports rise by $10B and nothing else changes, GDP falls by $10B.", a:false, ex:"Trick! If imports rise by $10B, it's because someone bought them — so C, I, or G also rose by $10B. The +$10B and −$10B cancel. Imports don't reduce GDP; the formula just nets them out." },
+      { type:'short', q:"In 2–3 sentences, explain why GDP per capita is an imperfect measure of well-being. Use one example from the chapter.", a:["distribution","inequality","pollution","environment","health","leisure","household","underground","nonpriced","quality","life","longevity","bads"], ex:"Strong answers mention: it doesn't capture distribution (average masks inequality), ignores nonpriced production (housework, volunteering), doesn't subtract bads (pollution, crime), and misses health/longevity. Bonus for connecting to your assignment about RFK's quote." },
+      { type:'mc', q:"In a recession, which best describes the trend?", opts:["Declines in GDP only","Declines in GDP, income, employment, and sales — widespread and lasting","Just a single quarter of negative growth","High inflation only"], a:1, ex:"NBER's definition emphasizes WIDESPREAD decline across multiple indicators (GDP, income, employment, sales) lasting more than a few months. The two-quarter rule is a common shorthand but not the official definition." }
+    ],
+    topics: ["GDP definition","Nominal vs Real","Spending approach","Imports trick","GDP problems","Growth rate calc","Deflator calc","Recession definition"]
+  },
+
+  /* ---------------- CHAPTER 27 ---------------- */
+  {
+    id: 27, title: "Wealth of Nations & Growth",
+    teach: [
+      { type: 'h3', text: "The hockey stick of human prosperity" },
+      { type: 'p', text: "For 99% of human history, GDP per capita hovered around $700–1000 (in 2015 dollars). Then around 1800, things exploded — but only in some places. Today the richest countries are 50× richer than the poorest." },
+      { type: 'graphSlot', id: 'hockey' },
+      { type: 'h3', text: "Three Key Facts" },
+      { type: 'card', accent: 'p', html: "<ol><li><b>GDP per capita varies enormously</b> — 50× differences across countries</li><li><b>Everyone used to be poor</b> — wealth (not poverty) is the historical anomaly</li><li><b>Small growth differences compound massively</b> — 2% vs 3% over 70 years is a huge gap (rule of 70)</li></ol>" },
+      { type: 'h3', text: "The Factors of Production" },
+      { type: 'card', accent: 'm', html: "<ul><li><b>Physical capital (K)</b> — tools in the broadest sense: tractors, computers, factories, roads</li><li><b>Human capital (eL)</b> — tools in the mind: education, skills, training</li><li><b>Technological knowledge (A)</b> — how the world works: chemistry, engineering, code</li><li><b>Organization</b> — combining the above productively (this is where institutions come in)</li></ul>" },
+      { type: 'p', html: "<b>Key distinction:</b> Human capital = what's in your head from learning. Technological knowledge = what humanity has discovered. You can have tons of A floating around, but if no one is educated (low e), you can't use it." },
+      { type: 'h3', text: "Why factors aren't enough — Institutions" },
+      { type: 'p', text: "North vs South Korea: same people, same culture, same starting point in 1945. South Korea today has GDP per capita ~20× higher. Why? <b>Institutions.</b>" },
+      { type: 'card', accent: 'l', html: "<b>The 5 institutions that matter most:</b><ol><li><b>Property rights</b> — you keep what you produce</li><li><b>Honest government</b> — low corruption</li><li><b>Political stability</b> — predictable rules</li><li><b>Dependable legal system</b> — contracts get enforced</li><li><b>Competitive and open markets</b> — entry is allowed, prices signal</li></ol><i style='color:var(--text-mute)'>Memorize these five — they show up constantly.</i>" },
+      { type: 'p', html: "<b>The Xiaogang story:</b> 18 farmers secretly broke up a Chinese commune in 1978. Each got their own plot, kept what they produced beyond a quota. Output exploded. Why? <b>Aligned self-interest with social interest</b> via property rights." },
+      { type: 'p', html: "<i class='friendly'>Big idea: the ultimate causes of wealth aren't tractors and schools — they're the rules that make people want to build tractors and go to school in the first place.</i>" }
+    ],
+    flashcards: [
+      { term: "Physical capital (K)", def: "Tools in the broadest sense — tractors, factories, computers, infrastructure." },
+      { term: "Human capital (eL)", def: "Tools in the mind — education, skills, training. Built via investment in people." },
+      { term: "Technological knowledge (A)", def: "How the world works. Built via R&D. Nonrival — can be shared infinitely." },
+      { term: "Institutions", def: "The 'rules of the game' — laws, customs, practices that shape incentives." },
+      { term: "Property rights", def: "Legal protection of ownership. Without them, why save or invest?" },
+      { term: "Rule of 70", def: "Years to double = 70 / growth rate (%). 2% growth doubles in 35 years; 7% in 10." },
+      { term: "Big Idea One", def: "Incentives matter." },
+      { term: "Big Idea Two", def: "Good institutions align self-interest with social interest." }
+    ],
+    formulas: [
+      { f: "Years to double ≈ 70 / growth rate %", n: "Rule of 70 — small growth differences compound massively" },
+      { f: "GDP per capita = GDP / Population", n: "What matters for living standards" }
+    ],
+    graphs: [
+      { id: 'hockey', title: "GDP per capita over time (the hockey stick)", desc: "Flat for ~1,800 years, then explosive growth in industrialized nations." }
+    ],
+    quiz: [
+      { type:'mc', q:"Which is the strongest example of investment in HUMAN capital?", opts:["A factory buying a new robot","A worker getting a master's degree","A government building a highway","A firm patenting a new design"], a:1, ex:"Human capital = skills/knowledge embedded in people. The degree builds human capital. The robot is physical capital, highway is physical capital, patent is technological knowledge." },
+      { type:'tf', q:"North and South Korea have very different GDPs primarily because of cultural differences.", a:false, ex:"They had the SAME culture and people in 1945. The difference is INSTITUTIONS — property rights, open markets, rule of law. This is the chapter's signature example." },
+      { type:'mc', q:"Which is NOT one of the five key institutions for growth?", opts:["Property rights","High taxes","Honest government","Dependable legal system"], a:1, ex:"The five are: property rights, honest government, political stability, dependable legal system, competitive/open markets. High taxes is not on the list (and actually can discourage investment)." },
+      { type:'calc', q:"If a country grows at 4% per year, roughly how many years until GDP doubles? (Use the rule of 70)", a:17.5, tol:0.5, ex:"70 / 4 = 17.5 years. Compare to 2% growth = 35 years to double. Small differences in growth, huge differences in outcomes." },
+      { type:'tf', q:"Technological knowledge and human capital are the same thing.", a:false, ex:"Different! Tech knowledge = what humanity has discovered (the chemistry behind a vaccine). Human capital = what's in YOUR head that lets you use it (the years of training to administer it). One can exist without the other being widespread." },
+      { type:'short', q:"Explain in 2–3 sentences why the Xiaogang farmers' secret agreement worked so well.", a:["property","incentive","keep","quota","self-interest","own","reward","work harder","aligned"], ex:"Strong answers mention: by giving farmers property rights to their excess output, the agreement aligned self-interest with the social interest. Farmers worked harder because they kept what they produced — exactly the opposite of the commune system where effort and reward were divorced." }
+    ],
+    topics: ["Hockey stick","Factors of production","Human vs physical capital","Institutions","Property rights","Korea example","Rule of 70"]
+  },
+
+  /* ---------------- CHAPTER 28 ---------------- */
+  {
+    id: 28, title: "Solow Model & Ideas",
+    teach: [
+      { type: 'h3', text: "The big question this chapter answers" },
+      { type: 'p', text: "Why does China grow at 10% while the US grows at 2%? Why did Germany and Japan grow so fast after WWII? The Solow model gives us a framework." },
+      { type: 'h3', text: "The Production Function" },
+      { type: 'formula', text: "Y = F(A, K, eL)", note: "Output Y depends on ideas A, capital K, and human-capital-adjusted labor eL" },
+      { type: 'p', html: "Simplified for the basic Solow model (holding A, e, L constant): <b>Y = √K</b>. As K rises, Y rises but at a <b>diminishing rate</b> — this is the 'iron logic of diminishing returns.'" },
+      { type: 'graphSlot', id: 'solow' },
+      { type: 'h3', text: "The Iron Logic of Diminishing Returns" },
+      { type: 'p', html: "First tractor on a farm = huge boost. Second tractor = useful but less. Third tractor = sits idle most days. Each added unit of capital adds <b>less</b> output than the last. This is the <b>marginal product of capital</b> declining." },
+      { type: 'h3', text: "Steady State" },
+      { type: 'p', html: "Investment grows the capital stock. Depreciation shrinks it. The economy reaches <b>steady state</b> when investment exactly equals depreciation — capital stops growing, output stops growing." },
+      { type: 'card', accent: 'p', html: "<b>Why China grew fast and is now slowing:</b><ul><li>China started with very little capital → marginal product was sky-high → tiny investments yielded huge growth</li><li>As K accumulates, marginal product falls → growth naturally decelerates</li><li>This is <b>catching-up growth</b>, fundamentally different from US-style cutting-edge growth</li></ul>" },
+      { type: 'h3', text: "Conditional Convergence" },
+      { type: 'p', text: "The Solow model predicts: countries grow faster the further they are below their steady state. Same reason WWII-devastated Japan and Germany grew rapidly after the war — they were way below their steady state and capital was scarce (high marginal product)." },
+      { type: 'h3', text: "Investment Rate Matters" },
+      { type: 'formula', text: "Investment = γ × Y", note: "γ = savings/investment rate. Higher γ → higher steady-state K and Y" },
+      { type: 'p', text: "But notice: a higher investment rate raises the LEVEL of GDP, not the long-run growth RATE. In the very long run, if A is constant, growth still stops at the new (higher) steady state." },
+      { type: 'h3', text: "Ideas: How to Escape the Iron Logic" },
+      { type: 'p', text: "If only K grows (with A fixed), growth eventually stops. But if A keeps growing — better ideas — the production function shifts UP and growth continues forever." },
+      { type: 'card', accent: 'l', html: "<b>Key properties of ideas:</b><ul><li><b>Nonrival</b> — you and I can use the same idea simultaneously (vs. an apple, which is rival)</li><li><b>Spillovers</b> — others benefit from your idea even if you invented it. Good for society, bad for inventor's incentives</li><li><b>Underprovided</b> — because of spillovers, private R&D is below the social optimum</li></ul>" },
+      { type: 'p', html: "<b>Patents</b> = government grant of temporary monopoly (typically 20 years). They <b>increase incentive</b> to innovate but <b>create monopoly power</b> — the great innovation policy trade-off." },
+      { type: 'p', html: "<i class='friendly'>Solow himself estimated that ~75% of US prosperity comes from better IDEAS, not capital accumulation. That's why long-run growth in developed countries is about innovation, not just adding more factories.</i>" }
+    ],
+    flashcards: [
+      { term: "Production Function", def: "Y = F(A, K, eL). Output depends on ideas, capital, and human-capital-adjusted labor." },
+      { term: "Diminishing returns to capital", def: "Each additional unit of K adds less output than the previous one (with L and A fixed)." },
+      { term: "Marginal product of capital (MPK)", def: "Extra output from one more unit of K. Falls as K rises." },
+      { term: "Steady state", def: "When investment equals depreciation. Capital stock stops growing." },
+      { term: "Catching-up growth", def: "Fast growth from accumulating capital when starting below steady state. China, postwar Germany/Japan." },
+      { term: "Cutting-edge growth", def: "Growth via NEW ideas. The only way to escape diminishing returns long-term. US, Western Europe." },
+      { term: "Conditional convergence", def: "Countries grow faster the further they are below their steady state." },
+      { term: "Nonrival good", def: "Many people can use it at once without subtracting. Ideas are nonrival; apples are rival." },
+      { term: "Spillover", def: "Benefits of an idea that flow to people other than the inventor. Why R&D is underprovided." },
+      { term: "Patent", def: "Government grant of temporary monopoly (~20 yrs) to encourage innovation. Trade-off: incentive vs monopoly power." }
+    ],
+    formulas: [
+      { f: "Y = F(A, K, eL)", n: "Full Solow production function" },
+      { f: "Y = √K  (simplified)", n: "Used for basic graph examples" },
+      { f: "Investment = γ × Y", n: "γ is savings/investment rate" },
+      { f: "Steady state: γY = δK", n: "Investment equals depreciation (δ = depreciation rate)" }
+    ],
+    graphs: [
+      { id: 'solow', title: "The Solow Diagram", desc: "Production function Y = √K (mint), Investment γY (peach), Depreciation δK (rose). Steady state where investment crosses depreciation." }
+    ],
+    quiz: [
+      { type:'mc', q:"In the Solow model, what causes growth to eventually stop (with A held constant)?", opts:["Population decline","Diminishing returns to capital","Government regulation","Trade deficits"], a:1, ex:"As K accumulates, marginal product of capital falls. Eventually new investment just covers depreciation — capital and output stop growing. This is the 'iron logic.'" },
+      { type:'mc', q:"China grew faster than the US over the past 30 years primarily because:", opts:["China has better institutions","China started with much less capital, so marginal product was higher","China invented more new technology","The US was in recession"], a:1, ex:"Catching-up growth. China was far below its steady state, so each unit of new capital had a high marginal product. The US is on the cutting edge — growth there comes from harder-to-produce new ideas." },
+      { type:'tf', q:"In the long run, raising the investment rate raises the GROWTH RATE of GDP forever.", a:false, ex:"It raises the LEVEL of steady-state GDP, not the long-run growth rate. After the new steady state is reached, growth stops again. Only better IDEAS (rising A) sustain long-run growth." },
+      { type:'tf', q:"Ideas are nonrival — you and I can both use the Pythagorean theorem at the same time.", a:true, ex:"Yes! That's the defining property of ideas (and why spillovers happen). An apple is rival — if you eat it, I can't. The Pythagorean theorem can be used by all of humanity simultaneously." },
+      { type:'mc', q:"Why is private investment in R&D usually less than the social optimum?", opts:["R&D is too expensive","Spillovers — inventors don't capture all the benefits","Government regulations","Workers are lazy"], a:1, ex:"When others can copy or benefit from your idea, your private return is less than the social return. So you invest less than would be socially ideal. This justifies patents and R&D subsidies." },
+      { type:'calc', q:"In the simple Solow model with Y = √K, if K = 100, what is Y?", a:10, tol:0.01, ex:"Y = √100 = 10. Now check diminishing returns: at K=400, Y=20 (4× the K, only 2× the Y). That's the iron logic in action." },
+      { type:'short', q:"Explain in 2–3 sentences why bombing a country (like Germany or Japan in WWII) can RAISE its growth rate afterward, according to the Solow model.", a:["below steady","capital","marginal product","catching","invest","convergence","destroyed","rebuild"], ex:"Strong answers mention: destruction pushes the country far below its steady state. With less capital, the marginal product of capital becomes very high. New investment yields rapid growth as the country 'catches up' to its steady state. (This is conditional convergence in action.)" },
+      { type:'mc', q:"Which is the BEST example of cutting-edge growth?", opts:["China building factories","India electrifying villages","US developing AI and biotech","Vietnam adopting cell phones"], a:2, ex:"Cutting-edge growth = inventing NEW ideas at the technological frontier. The other examples are catching-up growth (adopting/accumulating things that already exist elsewhere)." }
+    ],
+    topics: ["Production function","Diminishing returns","Steady state","Catching-up vs cutting-edge","Conditional convergence","Ideas (nonrival/spillovers)","Patents","Investment rate"]
+  },
+
+  /* ---------------- CHAPTER 29 ---------------- */
+  {
+    id: 29, title: "Saving, Investment & Financial System",
+    teach: [
+      { type: 'h3', text: "Why this chapter exists" },
+      { type: 'p', text: "Savings → investment → capital accumulation → growth (the Solow chain). But savings have to MOVE from savers to borrowers somehow. That's what financial intermediaries do, and when they fail, things get ugly (see: 2008)." },
+      { type: 'h3', text: "Why people save" },
+      { type: 'card', accent: 'm', html: "<ol><li><b>Smooth consumption</b> over the lifecycle (work years → retirement)</li><li><b>Impatience / time preference</b> — impatient people save less</li><li><b>Marketing & defaults</b> — auto-enrollment in 401(k) hugely raises savings</li><li><b>Interest rates</b> — higher rate → more saving (usually)</li></ol>" },
+      { type: 'h3', text: "Why people borrow" },
+      { type: 'card', accent: 'l', html: "<ol><li><b>Smooth consumption</b> (student loans, mortgages)</li><li><b>Finance large investments</b> (FedEx couldn't start small — needed capital up front)</li><li>Lower interest rate → more borrowing</li></ol>" },
+      { type: 'h3', text: "The Loanable Funds Market" },
+      { type: 'p', html: "Just like supply and demand for any market, but the 'price' is the <b>interest rate</b>. Equilibrium = where quantity supplied (savings) = quantity demanded (borrowing)." },
+      { type: 'graphSlot', id: 'loanable' },
+      { type: 'card', accent: 'p', html: "<b>What shifts the curves:</b><ul><li>↑ <b>Supply of savings</b> (less impatient, more income, etc.) → rate falls, savings rise</li><li>↓ <b>Investment demand</b> (recession fear) → rate falls, savings fall</li><li>↑ <b>Government borrowing</b> → demand shifts right → rate rises → <b>crowding out</b> private investment</li></ul>" },
+      { type: 'h3', text: "Crowding Out" },
+      { type: 'graphSlot', id: 'crowding' },
+      { type: 'p', text: "When the government borrows heavily, it pushes the demand curve right. Interest rates rise. Some new savings appear (consumption falls), but ALSO some private borrowing gets priced out. The deficit is financed partly by reduced consumption AND partly by reduced private investment." },
+      { type: 'h3', text: "Financial Intermediaries" },
+      { type: 'card', accent: 'g', html: "<b>Banks:</b> Pool deposits, evaluate loans (specialization), spread risk across many borrowers.<br><b>Bond markets:</b> Companies/governments borrow directly from public. Bond = IOU with coupon payments + principal at maturity. Rated AAA → D. <b>Junk bonds</b> = below BBB-.<br><b>Stock markets:</b> Equity ownership. Trading stocks ≠ economic investment (it's just transferring ownership)." },
+      { type: 'h3', text: "When Intermediation Fails" },
+      { type: 'p', text: "Four ways the bridge breaks: (1) insecure property rights (Argentina freezing bank accounts), (2) interest rate controls / usury laws creating shortages, (3) politicized lending (1990s Japan), (4) bank panics (2008)." },
+      { type: 'h3', text: "The 2008 Crisis: Three Concepts" },
+      { type: 'card', accent: 'r', html: "<b>1. Leverage</b> = Debt / Equity. Lehman had a leverage ratio of <b>44</b> right before collapse. Just a 2.3% drop in asset values would wipe them out.<br><br><b>2. Securitization</b> = bundling loans (like mortgages) and selling them as financial assets. Spreads risk... unless the underlying loans are bad.<br><br><b>3. Shadow banking</b> = bank-like entities (investment banks, money market funds) that take deposits and lend, but aren't FDIC-insured or regulated like traditional banks. By 2008 it was BIGGER than traditional banking. When housing prices fell, a panic-driven 'run' on shadow banks froze credit." },
+      { type: 'p', html: "<i class='friendly'>The Lehman story isn't really about Lehman — it's about how interconnected, highly-leveraged, lightly-regulated finance created a system where one failure could cascade into a global credit freeze.</i>" }
+    ],
+    flashcards: [
+      { term: "Saving", def: "Income not spent on consumption goods." },
+      { term: "Investment (economic)", def: "Purchase of NEW capital (factories, equipment, new homes). NOT buying stocks." },
+      { term: "Loanable funds market", def: "Market where savers supply funds, borrowers demand them. Price = interest rate." },
+      { term: "Time preference", def: "How much someone prefers consumption now vs later. High time preference = impatient = low savings." },
+      { term: "Crowding out", def: "When government borrowing raises interest rates and reduces private investment." },
+      { term: "Bond", def: "An IOU. Promises principal at maturity + (often) periodic coupon payments." },
+      { term: "Default risk", def: "Risk that the borrower won't repay. Higher risk → higher interest rate demanded." },
+      { term: "Junk bond", def: "Bonds rated below BBB-. Higher risk, higher yield." },
+      { term: "Leverage ratio", def: "Debt / Equity. High leverage = small price moves cause big swings in equity." },
+      { term: "Securitization", def: "Bundling loans (e.g., mortgages) into financial products that can be sold to investors." },
+      { term: "Shadow banking", def: "Bank-like activities outside FDIC insurance and traditional regulation. Caused the 2008 panic." }
+    ],
+    formulas: [
+      { f: "Leverage Ratio = Debt / Equity", n: "Lehman 2007: 44. Means 2.3% asset drop = insolvency." },
+      { f: "Owner's Equity = Asset Value − Mortgage Owed", n: "Cushion against default" },
+      { f: "Real Return ≈ Nominal Interest − Inflation Rate", n: "Lender's actual gain (Fisher relation)" }
+    ],
+    graphs: [
+      { id: 'loanable', title: "Market for Loanable Funds", desc: "Supply of savings (upward) meets demand for borrowing (downward). Equilibrium at intersection." },
+      { id: 'crowding', title: "Government Borrowing → Crowding Out", desc: "Demand shifts right. Higher rate, more savings (less consumption), but less private borrowing." }
+    ],
+    quiz: [
+      { type:'mc', q:"In the loanable funds market, an INCREASE in savings supply causes:", opts:["Higher interest rate, more savings","Lower interest rate, more savings","Higher interest rate, less savings","Lower interest rate, less savings"], a:1, ex:"Supply curve shifts right/down. New equilibrium has a lower rate but greater quantity of savings. Think Korea 1970s — high savings → low rates → tons of investment → growth." },
+      { type:'tf', q:"When a person buys a share of Apple stock, that counts as investment in the economic sense.", a:false, ex:"No! Buying existing stock is just transferring ownership. ECONOMIC investment = purchase of NEW capital. If Apple builds a new factory with the cash from issuing new shares, THAT'S investment." },
+      { type:'mc', q:"The federal government borrows $500B more than expected. The most likely effect is:", opts:["Interest rates fall","Private investment is crowded out","Inflation immediately drops","No effect on the loanable funds market"], a:1, ex:"Government borrowing shifts demand for loanable funds right. Interest rate rises. Higher rate prices out some private borrowers — that's crowding out." },
+      { type:'calc', q:"A buyer purchases a $400,000 house with $40,000 down (mortgage = $360,000). What is the leverage ratio?", a:9, tol:0.1, ex:"Leverage = Debt / Equity = 360,000 / 40,000 = 9. The buyer's $40k is 'leveraged' to control a $400k asset. A 10% drop in home value would wipe out $40k — all their equity." },
+      { type:'mc', q:"Why was Lehman Brothers' 44× leverage so dangerous?", opts:["The CEO was inexperienced","A small drop in asset values could make them insolvent","They were too small","They didn't have enough employees"], a:1, ex:"At 44× leverage, every $100 in assets was backed by ~$2.30 in equity. A 2.3% decline in asset values wipes out the equity entirely — bankruptcy. When housing fell sharply in 2007–08, that's exactly what happened." },
+      { type:'tf', q:"Junk bonds typically pay LOWER interest rates than AAA-rated bonds.", a:false, ex:"Opposite. Junk bonds (below BBB-) have higher default risk, so investors demand higher yields to compensate. AAA bonds are the safest and pay the lowest rates." },
+      { type:'short', q:"In 2–3 sentences, explain what 'shadow banking' is and why it was central to the 2008 crisis.", a:["unregulated","insurance","FDIC","run","panic","traditional","mortgage","securitization","credit"], ex:"Strong answers cover: shadow banks (investment banks, money market funds) did bank-like things — taking short-term deposits and making longer-term loans — but without FDIC insurance and with lighter regulation. By 2008 they were larger than traditional banking. When housing prices fell, depositors panicked and ran on shadow banks, freezing trillions in credit." },
+      { type:'mc', q:"All else equal, which would shift the SUPPLY of loanable funds RIGHT?", opts:["A drop in life expectancy (people expect to die younger)","Government deficit spending","An increase in patience / desire to save","An investment tax credit"], a:2, ex:"More patience → more saving at every interest rate → supply shifts right. The first option REDUCES savings (no point saving if you'll die soon). The other two affect demand, not supply." }
+    ],
+    topics: ["Loanable funds market","Crowding out","Bonds & default risk","Leverage","Securitization","Shadow banking","Why people save/borrow","2008 crisis"]
+  },
+
+  /* ---------------- CHAPTER 30 ---------------- */
+  {
+    id: 30, title: "Unemployment & Labor Force",
+    teach: [
+      { type: 'h3', text: "Definitions matter — they're testable" },
+      { type: 'card', accent: 'p', html: "<b>Unemployed</b> = adult (16+), not institutionalized, civilian, <b>actively looking for work</b>, no job.<br><b>Employed</b> = adult, not institutionalized, civilian, has a job.<br><b>Labor Force</b> = Employed + Unemployed.<br><b>Not in labor force</b> = retirees, students, stay-at-home parents, discouraged workers." },
+      { type: 'formula', text: "Unemployment Rate = Unemployed / Labor Force × 100", note: "NOT divided by total population" },
+      { type: 'formula', text: "Labor Force Participation Rate = Labor Force / Adult Population × 100", note: "Tells you who's even trying to work" },
+      { type: 'h3', text: "Three Types of Unemployment" },
+      { type: 'card', accent: 'm', html: "<b>1. Frictional</b> — short-term, natural matching delays. Workers searching for the right job. Even in a great economy this exists. Made smaller by Internet job boards." },
+      { type: 'card', accent: 'l', html: "<b>2. Structural</b> — persistent long-term unemployment from economy-wide shifts (manufacturing → services, oil shocks) AND from labor regulations. Europe has way more of it than US.<br><br><i>Why Europe? Generous unemployment benefits (France replaces 80% of income year 1), strong unions, employment protection laws that make firing hard → firms hire less.</i>" },
+      { type: 'card', accent: 'r', html: "<b>3. Cyclical</b> — tied to recessions. Falls when economy grows; spikes during downturns. Two camps debate cause: real shocks vs. aggregate demand deficiencies (Keynesians)." },
+      { type: 'formula', text: "Natural Rate = Frictional + Structural", note: "What unemployment looks like even at 'normal' times. Cyclical fluctuates around it." },
+      { type: 'h3', text: "Discouraged Workers & U-6" },
+      { type: 'p', text: "<b>Discouraged workers</b> have given up looking — so they're NOT in the labor force, NOT counted as unemployed. <b>U-6</b> is a broader measure that includes them PLUS part-timers who want full-time work. Always higher than the official rate." },
+      { type: 'h3', text: "Creative Destruction" },
+      { type: 'p', text: "Schumpeter's term. Even in a 'good' month with 700K net new jobs, there are millions of hires AND millions of separations underneath. Travel agents lose jobs to Expedia; app developers gain jobs that didn't exist. Frictional unemployment is the price of economic progress." },
+      { type: 'h3', text: "Labor Force Participation" },
+      { type: 'p', text: "Determined by lifecycle (peaks at 25–54, drops after 65), demographics (aging population → falling LFPR), and incentives (taxes discourage work; benefits discourage work). Europe's high implicit taxes on working past retirement age explain low LFPR for older men." }
+    ],
+    flashcards: [
+      { term: "Unemployed", def: "Adult, not institutionalized, civilian, actively looking for work, has no job." },
+      { term: "Labor Force", def: "Employed + Unemployed." },
+      { term: "Unemployment Rate", def: "Unemployed / Labor Force × 100." },
+      { term: "Labor Force Participation Rate", def: "Labor Force / Adult Population × 100." },
+      { term: "Frictional Unemployment", def: "Short-term joblessness from normal job-search frictions. Always exists." },
+      { term: "Structural Unemployment", def: "Persistent, long-term unemployment from economy-wide shifts and rigid labor regulations." },
+      { term: "Cyclical Unemployment", def: "Unemployment tied to the business cycle. Spikes in recessions." },
+      { term: "Natural Unemployment Rate", def: "Frictional + Structural. The 'normal' baseline." },
+      { term: "Discouraged Worker", def: "Wants a job but stopped looking. NOT counted in official unemployment." },
+      { term: "U-6 Rate", def: "Broader unemployment measure including discouraged and part-time-for-economic-reasons workers. Always higher than official." },
+      { term: "Creative Destruction", def: "Schumpeter's idea: new industries create jobs while destroying old ones." }
+    ],
+    formulas: [
+      { f: "Unemployment Rate = Unemployed / Labor Force × 100", n: "DENOMINATOR is labor force, NOT total population" },
+      { f: "Labor Force Participation Rate = Labor Force / Adult Population × 100", n: "Adult = 16+, civilian, non-institutionalized" },
+      { f: "Labor Force = Employed + Unemployed", n: "" },
+      { f: "Natural Rate = Frictional + Structural", n: "Excludes cyclical" }
+    ],
+    graphs: [],
+    quiz: [
+      { type:'calc', q:"In a town of 1,000 adults: 600 are employed, 50 are looking for work, 200 are retired, 100 are full-time students, 50 are stay-at-home parents. What is the unemployment rate (%)?", a:7.69, tol:0.1, ex:"Labor Force = Employed + Unemployed = 600 + 50 = 650. Unemployment Rate = 50 / 650 × 100 = 7.69%. Don't divide by 1,000! That gives the wrong answer." },
+      { type:'calc', q:"Same town. What is the Labor Force Participation Rate (%)?", a:65, tol:0.1, ex:"LFPR = Labor Force / Adult Population × 100 = 650 / 1,000 × 100 = 65%." },
+      { type:'mc', q:"A factory worker loses her job because her plant moved to Mexico. After a year of looking, she's still unemployed. This is best classified as:", opts:["Frictional","Structural","Cyclical","Seasonal"], a:1, ex:"Structural — long-term unemployment from a structural shift in the economy (globalization, manufacturing decline). Frictional would be a few weeks; cyclical would be tied to recession." },
+      { type:'tf', q:"A discouraged worker who gave up looking for a job 3 months ago is counted as unemployed.", a:false, ex:"No — they're NOT in the labor force at all (not actively looking). They're invisible to the official unemployment rate. The U-6 rate captures them." },
+      { type:'mc', q:"Why does Europe (France, Germany, Italy, Spain) have higher long-term unemployment than the US?", opts:["Europeans are lazier","Generous unemployment benefits + strong employment protection reduce both job-search urgency and firms' willingness to hire","Europe has fewer industries","European weather is worse"], a:1, ex:"This is the chapter's key comparison. France replaced 80% of income in year 1 of unemployment in 1994. Hard-to-fire labor → firms hire fewer people. Lower opportunity cost of staying unemployed → longer searches." },
+      { type:'tf', q:"Cyclical unemployment is part of the natural unemployment rate.", a:false, ex:"Natural rate = frictional + structural ONLY. Cyclical fluctuates ABOVE the natural rate during recessions and below it in booms." },
+      { type:'short', q:"Explain in 2–3 sentences why frictional unemployment is actually a sign of a healthy economy.", a:["matching","search","churn","creative destruction","new","grow","change","best fit"], ex:"Strong answers mention: a dynamic economy creates new jobs (apps, biotech) while destroying old ones (travel agents, blacksmiths). Workers transitioning between jobs is a feature of growth — they're searching for better matches. Schumpeter's creative destruction." },
+      { type:'mc', q:"In November 2022, US unemployment was 6.0M and labor force was 164.5M. Approximate unemployment rate?", opts:["3.6%","6.0%","10.0%","16.4%"], a:0, ex:"6.0 / 164.5 × 100 ≈ 3.6%. Always check whether you're dividing by labor force or total population — the question gave you both." }
+    ],
+    topics: ["Unemployment definition","Unemployment rate calc","LFPR calc","Frictional vs structural vs cyclical","Natural rate","Discouraged workers","Europe vs US","Creative destruction"]
+  },
+
+  /* ---------------- CHAPTER 31 ---------------- */
+  {
+    id: 31, title: "Inflation & Quantity Theory",
+    teach: [
+      { type: 'h3', text: "What is inflation?" },
+      { type: 'p', text: "An increase in the AVERAGE level of prices, measured by a price index. Not just one or two prices going up — all of them, on average, over time." },
+      { type: 'formula', text: "Inflation Rate = (P₂ − P₁) / P₁ × 100%", note: "Percentage change in a price index from one year to the next" },
+      { type: 'h3', text: "Three main price indexes" },
+      { type: 'card', accent: 'p', html: "<ul><li><b>CPI (Consumer Price Index)</b> — basket of ~80,000 goods bought by typical consumer. The most common headline measure.</li><li><b>GDP Deflator</b> — (Nominal/Real GDP) × 100. Covers ALL finished goods.</li><li><b>PPI (Producer Price Index)</b> — prices producers receive. Includes intermediate goods.</li></ul>" },
+      { type: 'h3', text: "The Quantity Theory of Money" },
+      { type: 'formula', text: "M × V = P × Y", note: "M = money supply, V = velocity, P = price level, Y = real GDP" },
+      { type: 'p', html: "This is an <b>identity</b> — true by definition. Both sides equal nominal GDP." },
+      { type: 'p', html: "If we assume V is stable (it changes slowly) and Y is fixed by real factors (capital, labor, ideas), then changes in M map directly to changes in P. <b>Inflation is a monetary phenomenon</b> — Friedman's famous claim." },
+      { type: 'h3', text: "In growth-rate form" },
+      { type: 'formula', text: "M̂ + V̂ = P̂ + Ŷ", note: "Growth rates of money + velocity = inflation + real growth. This becomes the AD curve in Ch 32!" },
+      { type: 'h3', text: "Zimbabwe & Hyperinflation" },
+      { type: 'p', text: "Mugabe's government printed money to pay soldiers. Result: 79.6 billion percent monthly inflation. Same pattern in Peru, Yugoslavia, Weimar Germany. The cause is always the same: rapid money growth far exceeding real growth." },
+      { type: 'h3', text: "Costs of Inflation" },
+      { type: 'card', accent: 'l', html: "<ol><li><b>Price confusion / money illusion</b> — hard to tell real signals from nominal noise. The baker who works overtime then realizes everything else got more expensive too.</li><li><b>Wealth redistribution</b> — unexpected inflation transfers wealth from lenders to borrowers (the lender gets paid back in less valuable dollars). Unexpected deflation does the opposite.</li><li><b>Inflation tax</b> — government essentially taxes money holders by debasing the currency. Hard to avoid (your cash under the mattress loses value too).</li><li><b>Menu costs</b> — physical cost of changing prices.</li></ol>" },
+      { type: 'h3', text: "The Fisher Effect" },
+      { type: 'formula', text: "Real Interest Rate ≈ Nominal Interest Rate − Inflation Rate", note: "The lender's actual return after inflation eats away nominal value" },
+      { type: 'formula', text: "Nominal Rate ≈ Real Rate + Expected Inflation", note: "Fisher Effect: lenders demand higher nominal rates when they expect higher inflation" },
+      { type: 'p', html: "<b>Why this matters:</b> if expected inflation is 7% and the equilibrium real rate is 5%, lenders will demand ~12% nominal. When inflation surprises (higher OR lower than expected), wealth gets redistributed." },
+      { type: 'p', html: "<i class='friendly'>Stable, predictable inflation = manageable. Volatile or surprise inflation = wealth gets shuffled around arbitrarily, contracts break, lending dries up. That's the real damage.</i>" }
+    ],
+    flashcards: [
+      { term: "Inflation", def: "Increase in the average level of prices over time." },
+      { term: "CPI", def: "Consumer Price Index. Tracks ~80,000 goods bought by a typical consumer." },
+      { term: "GDP Deflator", def: "(Nominal GDP / Real GDP) × 100. Covers all GDP." },
+      { term: "PPI", def: "Producer Price Index. Prices producers receive; includes intermediate goods." },
+      { term: "Quantity Theory of Money", def: "M × V = P × Y. Identity linking money supply, velocity, prices, and real output." },
+      { term: "Velocity (V)", def: "Average number of times a dollar is spent on finished goods/services per year." },
+      { term: "Money Illusion", def: "Confusing nominal price changes for real changes in purchasing power." },
+      { term: "Inflation Tax", def: "Hidden 'tax' on money holders as inflation erodes purchasing power. Hard to avoid." },
+      { term: "Hyperinflation", def: "Extremely rapid, out-of-control inflation — typically >50% per month." },
+      { term: "Fisher Effect", def: "Nominal interest rates rise one-for-one with expected inflation." },
+      { term: "Real Interest Rate", def: "Nominal rate minus inflation rate — the lender's actual return in purchasing power." },
+      { term: "Menu Costs", def: "Costs of changing posted prices (literally re-printing menus). One source of price stickiness." }
+    ],
+    formulas: [
+      { f: "Inflation Rate = (P₂ − P₁) / P₁ × 100", n: "Use a price index (CPI most common)" },
+      { f: "M × V = P × Y", n: "Quantity theory identity. Both sides = nominal GDP." },
+      { f: "M̂ + V̂ = P̂ + Ŷ", n: "Growth-rate form. Foundation of AD curve in Ch 32." },
+      { f: "Real Rate ≈ Nominal Rate − Inflation", n: "Lender's actual return" },
+      { f: "Nominal Rate ≈ Real Rate + Expected Inflation", n: "Fisher Effect" }
+    ],
+    graphs: [],
+    quiz: [
+      { type:'calc', q:"CPI in 2020 = 250. CPI in 2021 = 263. Calculate the inflation rate (%).", a:5.2, tol:0.1, ex:"Inflation = (263 − 250) / 250 × 100 = 5.2%. Notice you don't need to know the base year — the index does that work." },
+      { type:'mc', q:"Per the quantity theory, if M grows 8%, V is stable, and real GDP (Y) grows 3%, what is inflation?", opts:["3%","5%","8%","11%"], a:1, ex:"M̂ + V̂ = P̂ + Ŷ → 8% + 0% = P̂ + 3% → P̂ = 5%. Money growth above real growth becomes inflation." },
+      { type:'tf', q:"In the long run, real GDP is determined by the money supply.", a:false, ex:"Real GDP is determined by REAL factors — capital, labor, ideas. The money supply changes nominal values (prices), not real ones. This is the 'neutrality of money' in the long run." },
+      { type:'calc', q:"You loaned money at 7% nominal interest. Inflation turned out to be 9%. What was your REAL rate of return (%)?", a:-2, tol:0.1, ex:"Real ≈ Nominal − Inflation = 7 − 9 = −2%. You actually LOST 2% of purchasing power. This is why unexpected inflation hurts lenders and helps borrowers." },
+      { type:'calc', q:"Lenders expect inflation to be 4%. The equilibrium real rate is 3%. By the Fisher Effect, what nominal rate will they demand (%)?", a:7, tol:0.1, ex:"Nominal ≈ Real + Expected Inflation = 3 + 4 = 7%. Lenders price in expected inflation up front to protect their real return." },
+      { type:'mc', q:"Who BENEFITS most from UNEXPECTEDLY high inflation?", opts:["Lenders","Borrowers with fixed-rate loans","Savers in cash","Retirees on fixed pensions"], a:1, ex:"Borrowers pay back in dollars worth less than expected. Their real debt burden drops. The 1970s saw huge wealth transfers from mortgage lenders (banks) to borrowers (homeowners) for exactly this reason." },
+      { type:'tf', q:"The CPI perfectly captures changes in the cost of living.", a:false, ex:"The CPI has known biases: substitution bias, quality changes (an iPhone today vs 2007), new goods entering the basket. Some economists estimate CPI overstates true inflation by ~0.9%/year." },
+      { type:'short', q:"Explain in 2–3 sentences why hyperinflation almost always involves a desperate government and the printing press.", a:["print","money supply","tax","revenue","government","deficit","debt","spending"], ex:"Strong answers note: governments unable to raise taxes or borrow turn to printing money. This rapidly increases M, and per M̂+V̂=P̂+Ŷ, prices spike. Zimbabwe, Weimar Germany, Yugoslavia all followed this pattern. The inflation 'tax' lets the government extract real resources from money holders." },
+      { type:'mc', q:"Money illusion means:", opts:["People can detect counterfeit bills","People mistake nominal changes for real changes","Money has hidden value","Inflation is invisible"], a:1, ex:"If your wage rises 10% and all prices rise 10%, your real purchasing power is unchanged — but you may FEEL richer (and the higher movie ticket may feel like a real price increase). That cognitive bias is money illusion." }
+    ],
+    topics: ["Inflation rate calc","CPI vs Deflator vs PPI","Quantity Theory MV=PY","Money illusion","Fisher Effect","Real vs Nominal interest","Inflation redistributes wealth","Hyperinflation"]
+  },
+
+  /* ---------------- CHAPTER 32 ---------------- */
+  {
+    id: 32, title: "AD-AS & Business Fluctuations",
+    teach: [
+      { type: 'h3', text: "Where this chapter takes us" },
+      { type: 'p', text: "We had the long-run growth story (Solow, ideas). Now: WHY does the economy boom and bust around that long-run trend? The AD-AS model gives us a framework with three curves." },
+      { type: 'h3', text: "The Aggregate Demand (AD) Curve" },
+      { type: 'p', html: "Comes directly from the quantity theory in growth-rate form: <b>M̂ + V̂ = P̂ + Ŷ</b>. Plot inflation (P̂) on vertical axis and real growth (Ŷ) on horizontal." },
+      { type: 'p', html: "If spending growth is 5%, then any combo of inflation + real growth that adds up to 5% is on the AD curve. <b>Slope = −1.</b>" },
+      { type: 'card', accent: 'p', html: "<b>What shifts AD:</b><br>↑ Right (positive shock): faster money growth, rising confidence, wealth gains, lower taxes, more government spending, higher exports/lower imports<br>↓ Left (negative shock): the opposite of each" },
+      { type: 'h3', text: "The Long-Run Aggregate Supply (LRAS) Curve" },
+      { type: 'p', html: "<b>Vertical line at the Solow growth rate.</b> Why vertical? In the long run, money is neutral — real growth is determined by real factors (capital, labor, ideas), NOT by inflation or money supply." },
+      { type: 'p', text: "Real shocks shift LRAS. A positive real shock (Internet revolution) shifts LRAS right → higher growth + lower inflation. A negative real shock (1970s oil crisis) shifts LRAS left → lower growth + higher inflation (stagflation)." },
+      { type: 'graphSlot', id: 'adas' },
+      { type: 'h3', text: "The Short-Run Aggregate Supply (SRAS) Curve" },
+      { type: 'p', html: "<b>Upward-sloping</b> in the short run. Why? Sticky wages, sticky prices, menu costs, and nominal wage confusion. When AD increases, in the short run output AND inflation both rise. Workers see higher nominal wages and work more before realizing prices also rose." },
+      { type: 'p', html: "Each SRAS curve corresponds to an expected inflation rate (π^e). When actual inflation differs from expected, output deviates from the Solow rate — that's the boom or bust." },
+      { type: 'h3', text: "Two types of shocks" },
+      { type: 'card', accent: 'r', html: "<b>Real shocks (supply shocks)</b> — shift LRAS<br>Examples: weather (India agriculture), oil prices (1973, 1979, 2008), pandemics, technology breakthroughs<br>A negative real shock = lower growth AND higher inflation (the worst combo)" },
+      { type: 'card', accent: 'l', html: "<b>Aggregate demand shocks</b> — shift AD<br>Examples: confidence/fear, wealth changes, fiscal policy, monetary policy, export demand<br>Negative AD shock = lower growth AND lower inflation" },
+      { type: 'h3', text: "AD shocks: the four components" },
+      { type: 'p', html: "Spending growth changes can come from any of <b>C, I, G, NX</b>:<br>• <b>C</b> falls when consumers fear recession (2008)<br>• <b>I</b> falls when businesses are uncertain<br>• <b>G</b> rises during wartime or stimulus<br>• <b>NX</b> changes with foreign demand or shifts to imports<br>These changes tend to be <b>temporary</b> (unlike sustained money growth, which can persist)." },
+      { type: 'h3', text: "The Great Recession (2008)" },
+      { type: 'p', text: "Run on the shadow banking system → credit froze → AD collapsed. Real GDP went from +2% to −2.6% growth. Inflation crashed near zero. Both real and AD shocks intertwined (oil also spiked in 2007–08)." },
+      { type: 'h3', text: "COVID-19 Recession (2020)" },
+      { type: 'p', text: "A negative real shock (pandemic disrupting production) AND a negative AD shock (lockdowns crushing spending) hit simultaneously. 17M Americans lost jobs in 2 months. Unemployment 3.5% → 15%." },
+      { type: 'p', html: "<i class='friendly'>The big takeaway: knowing whether a recession is from AD or real shocks tells you what policy might help. AD problems? Stimulus might work. Real shocks? Policy is much more limited.</i>" }
+    ],
+    flashcards: [
+      { term: "Aggregate Demand (AD)", def: "All combinations of inflation and real growth consistent with a given spending growth rate. Slope = −1." },
+      { term: "Long-Run Aggregate Supply (LRAS)", def: "Vertical at the Solow growth rate. Real growth determined by real factors, not money." },
+      { term: "Short-Run Aggregate Supply (SRAS)", def: "Upward-sloping due to sticky wages, sticky prices, menu costs, and nominal wage confusion." },
+      { term: "Real Shock", def: "Rapid change in productivity that shifts LRAS. Oil shocks, weather, pandemics." },
+      { term: "Aggregate Demand Shock", def: "Rapid, unexpected shift in spending growth (M̂ or v̂)." },
+      { term: "Solow Growth Rate", def: "Long-run potential growth set by real factors. Where LRAS sits." },
+      { term: "Sticky Wages", def: "Wages adjust slowly, especially downward. Reason SRAS slopes up." },
+      { term: "Menu Costs", def: "Real cost of changing posted prices. Source of price stickiness." },
+      { term: "Nominal Wage Confusion", def: "Workers respond to higher nominal wages without realizing prices also rose." },
+      { term: "Stagflation", def: "High inflation + low growth. Result of negative real shock (LRAS shifts left)." },
+      { term: "Shadow Banking", def: "Bank-like activity outside FDIC/regulation. Center of 2008 crisis." }
+    ],
+    formulas: [
+      { f: "M̂ + V̂ = P̂ + Ŷ", n: "Foundation of AD curve" },
+      { f: "AD slope = −1", n: "1pp ↑ in real growth = 1pp ↓ in inflation, given spending growth" },
+      { f: "Long Run: Ŷ = Solow Rate", n: "LRAS is vertical there" },
+      { f: "ΔŶ = Ŷ_C × ΔC + Ŷ_I × ΔI + ...", n: "Spending growth from C, I, G, NX components" }
+    ],
+    graphs: [
+      { id: 'adas', title: "AD-AS Model", desc: "AD downward-sloping; LRAS vertical at Solow rate; SRAS upward-sloping. Long-run equilibrium where all three meet." }
+    ],
+    quiz: [
+      { type:'mc', q:"A negative real shock (e.g., oil price spike) most likely causes:", opts:["Higher growth, higher inflation","Higher growth, lower inflation","Lower growth, higher inflation (stagflation)","Lower growth, lower inflation"], a:2, ex:"LRAS shifts left → real growth falls AND inflation rises along the AD curve. Classic stagflation. The 1970s oil shocks did exactly this and confused policymakers who were used to AD-driven cycles." },
+      { type:'mc', q:"A negative AD shock (e.g., consumer panic) most likely causes:", opts:["Higher growth, higher inflation","Higher growth, lower inflation","Lower growth, higher inflation","Lower growth, lower inflation"], a:3, ex:"AD shifts left along SRAS → both real growth and inflation fall. This is the 2008 pattern: GDP went from +2% to −2.6%, and inflation collapsed to near zero." },
+      { type:'tf', q:"The LRAS curve is vertical because money is neutral in the long run.", a:true, ex:"Yes! In the long run, real growth is determined by real factors (capital, labor, ideas, institutions). Inflation doesn't change real output in the long run, so LRAS is vertical at the Solow rate." },
+      { type:'calc', q:"If spending growth (M̂ + V̂) = 6% and real growth = 2%, what is inflation (%)?", a:4, tol:0.01, ex:"P̂ + Ŷ = M̂ + V̂ → P̂ = 6 − 2 = 4%. This is just the AD relationship — combinations of inflation and real growth that add up to spending growth." },
+      { type:'mc', q:"In the SHORT run, an unexpected increase in money growth most likely causes:", opts:["No effect on real GDP","Real GDP rises (and inflation rises somewhat)","Real GDP falls","Inflation immediately doubles"], a:1, ex:"Sticky wages and nominal wage confusion → SRAS slopes up → both real growth and inflation rise short-term. Only in the long run, after expectations adjust, does it become pure inflation with no real growth boost." },
+      { type:'mc', q:"Which is a SUPPLY-side (real) shock, not a demand-side shock?", opts:["A stock market crash reducing wealth","A consumer confidence collapse","An oil price spike","A government stimulus package"], a:2, ex:"Oil affects PRODUCTION costs and capacity → shifts LRAS. The others all shift AD by changing spending. Knowing which kind of shock matters because it determines whether output and inflation move together (AD) or opposite directions (real)." },
+      { type:'tf', q:"Sticky wages explain why SRAS slopes upward.", a:true, ex:"Yes — along with sticky prices, menu costs, and nominal wage confusion. If wages adjusted instantly to every price change, SRAS would be vertical (= LRAS) and AD shocks couldn't affect real output even short-term." },
+      { type:'short', q:"Explain in 2–3 sentences how the Great Recession involved both real shocks AND an AD shock.", a:["shadow","credit","aggregate demand","oil","housing","financial","banks","spending","collapse"], ex:"Strong answers cover: the run on shadow banks froze credit and collapsed aggregate demand (negative AD shock). At the same time, oil prices spiked in 2007–08 (real shock), making production costlier. Both forces hit simultaneously, deepening the recession." },
+      { type:'mc', q:"Which would shift the AD curve OUTWARD (right)?", opts:["A spike in oil prices","Consumers becoming fearful","An increase in government spending","Higher taxes"], a:2, ex:"More G → higher spending growth → AD shifts right. Oil prices shift LRAS (real shock). Fear and higher taxes shift AD LEFT, not right." }
+    ],
+    topics: ["AD curve","LRAS curve","SRAS curve","Real shocks","AD shocks","Sticky wages","Stagflation","Great Recession","Solow growth rate"]
+  }
+];
+
+/* ============================================
+   GRAPH RENDERERS (SVG)
+   ============================================ */
+const Graphs = {
+  hockey: () => `
+    <svg viewBox="0 0 600 280" width="100%">
+      <line class="axis" x1="50" y1="240" x2="570" y2="240"/>
+      <line class="axis" x1="50" y1="20" x2="50" y2="240"/>
+      <text x="300" y="270" text-anchor="middle">Year (1 AD → 2000)</text>
+      <text x="20" y="130" transform="rotate(-90 20,130)" text-anchor="middle">GDP per capita</text>
+      <path d="M 60 230 L 280 228 L 380 215 L 440 180 L 480 130 L 520 70 L 560 35"
+        stroke="#ffb38a" stroke-width="3" fill="none"/>
+      <circle cx="60" cy="230" r="3" fill="#ffb38a"/>
+      <circle cx="380" cy="215" r="3" fill="#ffb38a"/>
+      <circle cx="480" cy="130" r="3" fill="#ffb38a"/>
+      <circle cx="560" cy="35" r="3" fill="#ffb38a"/>
+      <text x="62" y="222" font-size="10">~$700 (year 1)</text>
+      <text x="385" y="208" font-size="10">~$700 (1500)</text>
+      <text x="430" y="155" font-size="10">~$2k (1820)</text>
+      <text x="480" y="55" font-size="10">~$50k+ (2000)</text>
+      <text x="200" y="160" fill="#a3acc6" font-size="11" font-style="italic">99% of history: flat poverty</text>
+      <text x="430" y="220" fill="#8de1bf" font-size="11" font-style="italic">Hockey stick → industrial era</text>
+    </svg>`,
+
+  solow: () => `
+    <svg viewBox="0 0 600 340" width="100%">
+      <line class="axis" x1="60" y1="290" x2="570" y2="290"/>
+      <line class="axis" x1="60" y1="20" x2="60" y2="290"/>
+      <text x="320" y="320" text-anchor="middle">Capital (K)</text>
+      <text x="22" y="160" transform="rotate(-90 22,160)" text-anchor="middle">Output (Y), Investment, Depreciation</text>
+      <!-- Production function Y = sqrt(K) * 30 -->
+      <path d="M 60 290 Q 200 130 570 60" stroke="#8de1bf" stroke-width="2.5" fill="none"/>
+      <text x="490" y="50" fill="#8de1bf" font-size="12">Y = √K (output)</text>
+      <!-- Investment γY (lower curve) -->
+      <path d="M 60 290 Q 200 230 570 195" stroke="#ffb38a" stroke-width="2.5" fill="none"/>
+      <text x="490" y="190" fill="#ffb38a" font-size="12">γY (investment)</text>
+      <!-- Depreciation δK (straight line) -->
+      <line x1="60" y1="290" x2="500" y2="40" stroke="#ff8fa8" stroke-width="2.5"/>
+      <text x="430" y="80" fill="#ff8fa8" font-size="12">δK (depreciation)</text>
+      <!-- Steady state intersection -->
+      <circle cx="295" cy="200" r="5" fill="#ffd479"/>
+      <line x1="295" y1="200" x2="295" y2="290" stroke="#ffd479" stroke-dasharray="4 3"/>
+      <line x1="60" y1="160" x2="295" y2="160" stroke="#ffd479" stroke-dasharray="4 3"/>
+      <text x="305" y="195" fill="#ffd479" font-size="11">Steady state</text>
+      <text x="285" y="306" fill="#ffd479" font-size="10">K*</text>
+      <text x="42" y="164" fill="#ffd479" font-size="10">Y*</text>
+    </svg>`,
+
+  loanable: () => `
+    <svg viewBox="0 0 600 320" width="100%">
+      <line class="axis" x1="60" y1="270" x2="570" y2="270"/>
+      <line class="axis" x1="60" y1="20" x2="60" y2="270"/>
+      <text x="320" y="300" text-anchor="middle">Quantity of Loanable Funds ($)</text>
+      <text x="22" y="150" transform="rotate(-90 22,150)" text-anchor="middle">Interest Rate (%)</text>
+      <!-- Supply (upward) -->
+      <line x1="80" y1="250" x2="540" y2="50" stroke="#8de1bf" stroke-width="2.5"/>
+      <text x="495" y="45" fill="#8de1bf" font-size="12">Supply (savings)</text>
+      <!-- Demand (downward) -->
+      <line x1="80" y1="50" x2="540" y2="250" stroke="#ffb38a" stroke-width="2.5"/>
+      <text x="495" y="265" fill="#ffb38a" font-size="12">Demand (borrow)</text>
+      <!-- Equilibrium -->
+      <circle cx="310" cy="150" r="5" fill="#ffd479"/>
+      <line x1="310" y1="150" x2="310" y2="270" stroke="#ffd479" stroke-dasharray="4 3"/>
+      <line x1="60" y1="150" x2="310" y2="150" stroke="#ffd479" stroke-dasharray="4 3"/>
+      <text x="40" y="155" fill="#ffd479" font-size="11">r*</text>
+      <text x="298" y="288" fill="#ffd479" font-size="11">Q*</text>
+      <text x="320" y="143" fill="#ffd479" font-size="11">Equilibrium</text>
+    </svg>`,
+
+  crowding: () => `
+    <svg viewBox="0 0 600 320" width="100%">
+      <line class="axis" x1="60" y1="270" x2="570" y2="270"/>
+      <line class="axis" x1="60" y1="20" x2="60" y2="270"/>
+      <text x="320" y="300" text-anchor="middle">Quantity of Loanable Funds ($)</text>
+      <text x="22" y="150" transform="rotate(-90 22,150)" text-anchor="middle">Interest Rate (%)</text>
+      <!-- Supply -->
+      <line x1="80" y1="250" x2="540" y2="50" stroke="#8de1bf" stroke-width="2.5"/>
+      <text x="495" y="45" fill="#8de1bf" font-size="12">Supply</text>
+      <!-- Demand 1 (original) -->
+      <line x1="80" y1="50" x2="490" y2="240" stroke="#ffb38a" stroke-width="2" stroke-dasharray="5 4"/>
+      <text x="100" y="60" fill="#ffb38a" font-size="11">D₁</text>
+      <!-- Demand 2 (shifted right with G borrowing) -->
+      <line x1="160" y1="50" x2="570" y2="240" stroke="#ffb38a" stroke-width="2.5"/>
+      <text x="180" y="60" fill="#ffb38a" font-size="11">D₂ (with gov borrow)</text>
+      <!-- Equilibria -->
+      <circle cx="280" cy="160" r="5" fill="#ffd479"/>
+      <text x="225" y="155" fill="#ffd479" font-size="10">a (r=7%)</text>
+      <circle cx="345" cy="130" r="5" fill="#b8a6f0"/>
+      <text x="350" y="120" fill="#b8a6f0" font-size="10">b (r=9%)</text>
+      <text x="260" y="200" fill="#a3acc6" font-size="10" font-style="italic">↑ rate crowds out</text>
+      <text x="265" y="215" fill="#a3acc6" font-size="10" font-style="italic">private investment</text>
+    </svg>`,
+
+  adas: () => `
+    <svg viewBox="0 0 600 340" width="100%">
+      <line class="axis" x1="60" y1="290" x2="570" y2="290"/>
+      <line class="axis" x1="60" y1="20" x2="60" y2="290"/>
+      <text x="320" y="320" text-anchor="middle">Real Growth Rate (Ŷ %)</text>
+      <text x="22" y="160" transform="rotate(-90 22,160)" text-anchor="middle">Inflation Rate (P̂ %)</text>
+      <!-- LRAS (vertical) -->
+      <line x1="280" y1="40" x2="280" y2="290" stroke="#b8a6f0" stroke-width="2.5"/>
+      <text x="285" y="50" fill="#b8a6f0" font-size="12">LRAS (Solow rate)</text>
+      <!-- AD (downward, slope -1) -->
+      <line x1="100" y1="80" x2="500" y2="280" stroke="#ffb38a" stroke-width="2.5"/>
+      <text x="450" y="295" fill="#ffb38a" font-size="12">AD</text>
+      <!-- SRAS (upward) -->
+      <path d="M 100 280 Q 280 180 500 100" stroke="#8de1bf" stroke-width="2.5" fill="none"/>
+      <text x="475" y="95" fill="#8de1bf" font-size="12">SRAS (π^e)</text>
+      <!-- Equilibrium dot -->
+      <circle cx="280" cy="180" r="6" fill="#ffd479"/>
+      <line x1="280" y1="180" x2="280" y2="290" stroke="#ffd479" stroke-dasharray="3 3"/>
+      <line x1="60" y1="180" x2="280" y2="180" stroke="#ffd479" stroke-dasharray="3 3"/>
+      <text x="40" y="184" fill="#ffd479" font-size="11">π*</text>
+      <text x="270" y="306" fill="#ffd479" font-size="11">Solow rate</text>
+      <text x="290" y="174" fill="#ffd479" font-size="11">Long-run equilibrium</text>
+    </svg>`
+};
+
+/* ============================================
+   STATE & RENDERING
+   ============================================ */
+let state = {
+  activeTab: 'dashboard',
+  mode: 'learn', // 'learn' or 'practice'
+  flashIndex: 0,
+  flashFlipped: false,
+  quizAnswers: {}, // {chapId: {qIdx: {answer, correct}}}
+  quizSubmitted: {}, // {chapId: bool}
+  flashKnown: {}, // {chapId: {idx: 'know'|'dontknow'}}
+  topicMisses: {}, // {topic: count}
+  lastChapter: null
+};
+
+async function loadState() {
+  const saved = await Store.get('macroAppState', null);
+  if (saved) Object.assign(state, saved);
+}
+async function saveState() {
+  const toSave = {
+    quizAnswers: state.quizAnswers,
+    quizSubmitted: state.quizSubmitted,
+    flashKnown: state.flashKnown,
+    topicMisses: state.topicMisses,
+    lastChapter: state.lastChapter
+  };
+  await Store.set('macroAppState', toSave);
+}
+
+function renderTabs() {
+  const tabs = document.getElementById('tabs');
+  let html = `<button class="tab dashboard ${state.activeTab==='dashboard'?'active':''}" onclick="switchTab('dashboard')">📊 Dashboard</button>`;
+  CHAPTERS.forEach(c => {
+    const subm = state.quizSubmitted[c.id];
+    const dot = subm ? '<span style="color:var(--good);margin-left:6px;">●</span>' : '';
+    html += `<button class="tab ${state.activeTab===c.id?'active':''}" onclick="switchTab(${c.id})">Ch ${c.id}${dot}</button>`;
+  });
+  tabs.innerHTML = html;
+}
+
+function switchTab(tab) {
+  state.activeTab = tab;
+  state.mode = 'learn';
+  state.flashIndex = 0;
+  state.flashFlipped = false;
+  if (tab !== 'dashboard') state.lastChapter = tab;
+  saveState();
+  renderTabs();
+  render();
+  window.scrollTo(0, 0);
+}
+
+function setMode(mode) {
+  state.mode = mode;
+  state.flashIndex = 0;
+  state.flashFlipped = false;
+  render();
+}
+
+function render() {
+  if (state.activeTab === 'dashboard') {
+    renderDashboard();
+  } else {
+    renderChapter(state.activeTab);
+  }
+  renderHeaderStats();
+}
+
+function renderHeaderStats() {
+  const total = CHAPTERS.length;
+  const done = Object.keys(state.quizSubmitted).filter(k => state.quizSubmitted[k]).length;
+  document.getElementById('header-stats').innerHTML =
+    `<span style="color:var(--mint)">${done}</span>/${total} chapter quizzes complete`;
+}
+
+function renderDashboard() {
+  const c = document.getElementById('content');
+  const submitted = Object.keys(state.quizSubmitted).filter(k => state.quizSubmitted[k]);
+  let totalQ = 0, totalCorrect = 0;
+  submitted.forEach(cid => {
+    const chap = CHAPTERS.find(x => x.id == cid);
+    if (!chap) return;
+    chap.quiz.forEach((_, i) => {
+      const ans = state.quizAnswers[cid] && state.quizAnswers[cid][i];
+      if (ans) {
+        totalQ++;
+        if (ans.correct) totalCorrect++;
+      }
+    });
+  });
+  const avgGrade = totalQ ? Math.round((totalCorrect / totalQ) * 100) : null;
+
+  // Build gap analysis
+  const gaps = Object.entries(state.topicMisses)
+    .filter(([_, n]) => n >= 2)
+    .sort((a,b) => b[1] - a[1])
+    .slice(0, 8);
+
+  let resumeBanner = '';
+  if (state.lastChapter) {
+    const chap = CHAPTERS.find(c => c.id === state.lastChapter);
+    if (chap) resumeBanner = `<div class="resume-banner">👋 Welcome back! You were last in <b>Chapter ${chap.id}: ${chap.title}</b>. <a style="color:var(--peach);cursor:pointer;text-decoration:underline;" onclick="switchTab(${chap.id})">Jump back in →</a></div>`;
+  }
+
+  c.innerHTML = `
+    ${resumeBanner}
+    <h2>Your Study Dashboard</h2>
+    <p>Three days till your exam. You've got this. Here's where you stand:</p>
+
+    <div class="stat-grid">
+      <div class="stat"><div class="num">${submitted.length}/${CHAPTERS.length}</div><div class="lbl">Chapter quizzes done</div></div>
+      <div class="stat"><div class="num">${avgGrade !== null ? avgGrade + '%' : '—'}</div><div class="lbl">Average quiz score</div></div>
+      <div class="stat"><div class="num">${Object.keys(state.flashKnown).length}</div><div class="lbl">Chapters with flashcard practice</div></div>
+      <div class="stat"><div class="num">${gaps.length}</div><div class="lbl">Topics needing review</div></div>
+    </div>
+
+    <h3>📈 Per-Chapter Progress</h3>
+    ${CHAPTERS.map(ch => {
+      const subm = state.quizSubmitted[ch.id];
+      let score = '';
+      if (subm) {
+        let q = 0, ok = 0;
+        ch.quiz.forEach((_, i) => {
+          const a = state.quizAnswers[ch.id] && state.quizAnswers[ch.id][i];
+          if (a) { q++; if (a.correct) ok++; }
+        });
+        const pct = Math.round((ok/q)*100);
+        const color = pct >= 80 ? 'var(--good)' : pct >= 60 ? 'var(--warn)' : 'var(--bad)';
+        score = `<span style="color:${color};font-weight:600;">${ok}/${q} (${pct}%)</span>`;
+      } else {
+        score = '<span style="color:var(--text-mute);">Not started</span>';
+      }
+      return `<div class="card card-tight" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;" onclick="switchTab(${ch.id})">
+        <div><b style="color:var(--peach);">Ch ${ch.id}</b> — ${ch.title}</div>
+        <div>${score}</div>
+      </div>`;
+    }).join('')}
+
+    <h3>🎯 Knowledge Gaps to Review</h3>
+    ${gaps.length === 0
+      ? '<p style="color:var(--text-mute);">No big gaps detected yet — keep taking quizzes and any topics you miss repeatedly will show up here.</p>'
+      : gaps.map(([topic, n]) => `<div class="gap-item">
+          <div class="topic">${topic}</div>
+          <div class="detail">You've missed questions on this topic <b>${n}</b> times. Suggest reviewing the relevant chapter's Learn section.</div>
+        </div>`).join('')
+    }
+
+    <hr class="hr">
+    <h3>⚙️ Reset Options</h3>
+    <p style="font-size:13px;">If you want to start fresh on any quiz or all your progress:</p>
+    <button class="reset-btn" onclick="resetAll()">Reset all progress</button>
+    <p style="font-size:12px;color:var(--text-mute);margin-top:30px;">
+      <b>Tip:</b> The "Practice" tab inside each chapter has flashcards (great for short bursts) and a full quiz with calculation, T/F, MC, and short-answer questions. Wrong calculations include step-by-step explanations.
+    </p>
+  `;
+}
+
+function resetAll() {
+  if (!confirm('This will erase all quiz scores, flashcard progress, and gap tracking. Continue?')) return;
+  state.quizAnswers = {};
+  state.quizSubmitted = {};
+  state.flashKnown = {};
+  state.topicMisses = {};
+  saveState();
+  render();
+  renderTabs();
+}
+
+function renderChapter(id) {
+  const ch = CHAPTERS.find(x => x.id === id);
+  const c = document.getElementById('content');
+  c.innerHTML = `
+    <h2>Chapter ${ch.id} — ${ch.title}</h2>
+    <div class="mode-toggle">
+      <button class="mode-btn ${state.mode==='learn'?'active':''}" onclick="setMode('learn')">📖 Learn</button>
+      <button class="mode-btn ${state.mode==='practice'?'active':''}" onclick="setMode('practice')">✍️ Practice</button>
+    </div>
+    <div id="chapter-body"></div>
+  `;
+  if (state.mode === 'learn') renderLearn(ch);
+  else renderPractice(ch);
+}
+
+function renderLearn(ch) {
+  const body = document.getElementById('chapter-body');
+  let html = '';
+  ch.teach.forEach(b => {
+    if (b.type === 'h3') html += `<h3>${b.text}</h3>`;
+    else if (b.type === 'h4') html += `<h4>${b.text}</h4>`;
+    else if (b.type === 'p') html += `<p>${b.text}</p>`;
+    else if (b.type === 'card') html += `<div class="card accent-${b.accent}">${b.html}</div>`;
+    else if (b.type === 'formula') html += `<span class="formula">${b.text}<em>${b.note||''}</em></span>`;
+    else if (b.type === 'graphSlot') {
+      const g = ch.graphs.find(x => x.id === b.id);
+      if (g && Graphs[g.id]) {
+        html += `<div class="graph-wrap">${Graphs[g.id]()}<div class="graph-cap"><b>${g.title}</b> — ${g.desc}</div></div>`;
+      }
+    }
+  });
+
+  // Formulas summary
+  if (ch.formulas && ch.formulas.length) {
+    html += '<h3>📐 Formulas to Memorize</h3>';
+    ch.formulas.forEach(f => {
+      html += `<span class="formula">${f.f}<em>${f.n}</em></span>`;
+    });
+  }
+
+  // Key terms
+  if (ch.flashcards && ch.flashcards.length) {
+    html += '<h3>🔑 Key Terms (quick reference)</h3>';
+    html += '<ul class="terms">';
+    ch.flashcards.forEach(t => html += `<li><strong>${t.term}</strong> — ${t.def}</li>`);
+    html += '</ul>';
+  }
+
+  body.innerHTML = html;
+}
+
+function renderPractice(ch) {
+  const body = document.getElementById('chapter-body');
+  body.innerHTML = `
+    <h3>🎴 Flashcards <span style="font-size:13px;color:var(--text-mute);font-weight:400;">— click to flip; mark known/unknown to track</span></h3>
+    <div id="flashcard-area"></div>
+    <hr class="hr">
+    <h3>📝 Quiz <span style="font-size:13px;color:var(--text-mute);font-weight:400;">— mixed format. Submit to see your grade.</span></h3>
+    <div id="quiz-area"></div>
+  `;
+  renderFlashcard(ch);
+  renderQuiz(ch);
+}
+
+function renderFlashcard(ch) {
+  const area = document.getElementById('flashcard-area');
+  const card = ch.flashcards[state.flashIndex];
+  const known = state.flashKnown[ch.id] || {};
+  const knownCount = Object.values(known).filter(v => v === 'know').length;
+  area.innerHTML = `
+    <div class="flashcard-container">
+      <div class="flashcard ${state.flashFlipped?'flipped':''}" onclick="flipFlashcard()">
+        <div class="face front">
+          <div class="term">${card.term}</div>
+          <div class="hint">tap to reveal definition</div>
+        </div>
+        <div class="face back">
+          <div class="def">${card.def}</div>
+          <div class="hint">tap to flip back</div>
+        </div>
+      </div>
+    </div>
+    <div class="flashcard-controls">
+      <button class="fc-btn" onclick="prevFlash(${ch.id})">← Previous</button>
+      <span class="fc-counter">${state.flashIndex+1} / ${ch.flashcards.length}</span>
+      <button class="fc-btn" onclick="nextFlash(${ch.id})">Next →</button>
+      <button class="fc-btn dontknow" onclick="markFlash(${ch.id},'dontknow')">Don't know</button>
+      <button class="fc-btn know" onclick="markFlash(${ch.id},'know')">I know it</button>
+    </div>
+    <div style="text-align:center;color:var(--text-mute);font-size:12px;">${knownCount} marked known of ${ch.flashcards.length}</div>
+  `;
+}
+function flipFlashcard() { state.flashFlipped = !state.flashFlipped; renderFlashcard(getCurrentChapter()); }
+function nextFlash(id) {
+  const ch = CHAPTERS.find(c=>c.id===id);
+  state.flashIndex = (state.flashIndex + 1) % ch.flashcards.length;
+  state.flashFlipped = false;
+  renderFlashcard(ch);
+}
+function prevFlash(id) {
+  const ch = CHAPTERS.find(c=>c.id===id);
+  state.flashIndex = (state.flashIndex - 1 + ch.flashcards.length) % ch.flashcards.length;
+  state.flashFlipped = false;
+  renderFlashcard(ch);
+}
+function markFlash(id, status) {
+  if (!state.flashKnown[id]) state.flashKnown[id] = {};
+  state.flashKnown[id][state.flashIndex] = status;
+  saveState();
+  nextFlash(id);
+}
+function getCurrentChapter() { return CHAPTERS.find(c=>c.id===state.activeTab); }
+
+function renderQuiz(ch) {
+  const area = document.getElementById('quiz-area');
+  const submitted = state.quizSubmitted[ch.id];
+  const answers = state.quizAnswers[ch.id] || {};
+  let html = '';
+
+  if (submitted) {
+    let correct = 0;
+    ch.quiz.forEach((_, i) => { if (answers[i] && answers[i].correct) correct++; });
+    const pct = Math.round((correct/ch.quiz.length)*100);
+    const color = pct >= 80 ? 'var(--good)' : pct >= 60 ? 'var(--warn)' : 'var(--bad)';
+    let msg = pct >= 90 ? "You've got this nailed. 🎉"
+            : pct >= 80 ? "Solid work — exam-ready on this one."
+            : pct >= 60 ? "Good base, but worth one more pass through the Learn section."
+            : "Don't sweat it — review the Learn section and retake. The questions you missed are highlighted below.";
+    html += `<div class="grade-box">
+      <div class="grade-num" style="color:${color};">${correct}/${ch.quiz.length} (${pct}%)</div>
+      <div class="grade-label">${msg}</div>
+      <button class="secondary-btn" style="margin-top:14px;" onclick="retakeQuiz(${ch.id})">↻ Retake quiz</button>
+    </div>`;
+  }
+
+  ch.quiz.forEach((q, i) => {
+    const ans = answers[i];
+    const wasSubmitted = submitted;
+    const typeLabel = {tf:'True/False', mc:'Multiple Choice', calc:'Calculation', short:'Short Answer'}[q.type];
+    html += `<div class="quiz-q">
+      <div class="qnum">Question ${i+1} <span class="qtype">[${typeLabel}]</span></div>
+      <div class="qtext">${q.q}</div>`;
+
+    if (q.type === 'tf') {
+      ['True','False'].forEach((label, idx) => {
+        const isBool = idx === 0;
+        const sel = ans && ans.answer === isBool;
+        let cls = 'opt';
+        if (wasSubmitted) {
+          if (q.a === isBool) cls += ' correct';
+          else if (sel) cls += ' wrong';
+        } else if (sel) cls += ' selected';
+        html += `<div class="${cls}" ${wasSubmitted?'':`onclick="answerQ(${ch.id},${i},${isBool})"`}>${label}</div>`;
+      });
+    } else if (q.type === 'mc') {
+      q.opts.forEach((opt, idx) => {
+        const sel = ans && ans.answer === idx;
+        let cls = 'opt';
+        if (wasSubmitted) {
+          if (q.a === idx) cls += ' correct';
+          else if (sel) cls += ' wrong';
+        } else if (sel) cls += ' selected';
+        html += `<div class="${cls}" ${wasSubmitted?'':`onclick="answerQ(${ch.id},${i},${idx})"`}>${String.fromCharCode(65+idx)}. ${opt}</div>`;
+      });
+    } else if (q.type === 'calc') {
+      const v = ans ? ans.answer : '';
+      html += `<input type="number" step="any" class="text-input" placeholder="Enter your numeric answer..." value="${v}" ${wasSubmitted?'disabled':''} oninput="answerQ(${ch.id},${i},this.value)">`;
+    } else if (q.type === 'short') {
+      const v = ans ? ans.answer : '';
+      html += `<textarea class="text-input" placeholder="Type your response..." ${wasSubmitted?'disabled':''} oninput="answerQ(${ch.id},${i},this.value)">${v}</textarea>`;
+    }
+
+    if (wasSubmitted && ans) {
+      const fbClass = ans.correct ? 'right' : 'wrong-fb';
+      const icon = ans.correct ? '✅' : '❌';
+      let correctTxt = '';
+      if (q.type === 'tf') correctTxt = `Correct answer: <b>${q.a ? 'True' : 'False'}</b>`;
+      else if (q.type === 'mc') correctTxt = `Correct answer: <b>${String.fromCharCode(65+q.a)}. ${q.opts[q.a]}</b>`;
+      else if (q.type === 'calc') correctTxt = `Correct answer: <b>${q.a}</b>${q.tol?` (within ±${q.tol})`:''}`;
+      else if (q.type === 'short') correctTxt = `Looking for keywords like: <i>${q.a.slice(0,5).join(', ')}…</i>`;
+      html += `<div class="feedback ${fbClass}">${icon} ${correctTxt}<br><br><strong>Explanation:</strong> ${q.ex}</div>`;
+    }
+    html += '</div>';
+  });
+
+  if (!submitted) {
+    html += `<button class="submit-btn" onclick="submitQuiz(${ch.id})">Submit Quiz & Get Grade</button>
+             <button class="secondary-btn" onclick="clearQuiz(${ch.id})">Clear all</button>`;
+  }
+
+  area.innerHTML = html;
+}
+
+function answerQ(chId, qIdx, value) {
+  if (!state.quizAnswers[chId]) state.quizAnswers[chId] = {};
+  state.quizAnswers[chId][qIdx] = { answer: value, correct: false };
+  saveState();
+}
+function clearQuiz(chId) {
+  state.quizAnswers[chId] = {};
+  saveState();
+  renderQuiz(CHAPTERS.find(c=>c.id===chId));
+}
+function retakeQuiz(chId) {
+  state.quizAnswers[chId] = {};
+  state.quizSubmitted[chId] = false;
+  saveState();
+  renderQuiz(CHAPTERS.find(c=>c.id===chId));
+  renderTabs();
+}
+
+function gradeAnswer(q, val) {
+  if (val === undefined || val === null || val === '') return false;
+  if (q.type === 'tf') return val === q.a;
+  if (q.type === 'mc') return val === q.a;
+  if (q.type === 'calc') {
+    const num = parseFloat(val);
+    if (isNaN(num)) return false;
+    return Math.abs(num - q.a) <= (q.tol || 0.01);
+  }
+  if (q.type === 'short') {
+    const txt = String(val).toLowerCase();
+    if (txt.length < 30) return false;
+    let hits = 0;
+    q.a.forEach(kw => { if (txt.includes(kw.toLowerCase())) hits++; });
+    return hits >= Math.min(2, Math.ceil(q.a.length / 4));
+  }
+  return false;
+}
+
+function submitQuiz(chId) {
+  const ch = CHAPTERS.find(c=>c.id===chId);
+  const answers = state.quizAnswers[chId] || {};
+  ch.quiz.forEach((q, i) => {
+    const a = answers[i];
+    if (!a || a.answer === undefined || a.answer === '') {
+      // Mark as wrong if unanswered
+      answers[i] = { answer: a ? a.answer : null, correct: false };
+    } else {
+      const correct = gradeAnswer(q, a.answer);
+      answers[i] = { answer: a.answer, correct: correct };
+      if (!correct) {
+        // Track topic miss — use chapter topics list, picking by question index
+        const topic = ch.topics[i % ch.topics.length] || ch.title;
+        state.topicMisses[topic] = (state.topicMisses[topic] || 0) + 1;
+      }
+    }
+  });
+  state.quizAnswers[chId] = answers;
+  state.quizSubmitted[chId] = true;
+  saveState();
+  renderQuiz(ch);
+  renderTabs();
+  window.scrollTo({top: 0, behavior:'smooth'});
+}
+
+/* ============================================
+   INIT
+   ============================================ */
+(async () => {
+  await loadState();
+  renderTabs();
+  render();
+})();
+</script>
+</body>
+</html>
