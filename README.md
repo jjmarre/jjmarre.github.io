@@ -1,4 +1,5 @@
-# jjmarre.github.io <!DOCTYPE html>
+# jjmarre.github.io <Macro Final>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -293,25 +294,43 @@ const CHAPTERS = [
       { type: 'p', text: "Imports look like a 'subtraction' but eliminating imports doesn't raise GDP. If $10B of iPhones never arrive, both C and M drop by $10B — GDP unchanged. <b>Imports aren't bad for GDP; the formula just nets them out.</b> This is a classic trick question." },
       { type: 'h3', text: "Problems with GDP (your assignment territory)" },
       { type: 'card', accent: 'r', html: "<ul><li><b>Underground economy</b> not counted (10–20% in US, 41% in Latin America)</li><li><b>Nonpriced production</b> not counted (housework, volunteering, free YouTube)</li><li><b>Bads</b> not subtracted (pollution, crime)</li><li><b>Health/longevity</b> not counted (a year of life valued ~$150k)</li><li>Doesn't show <b>distribution</b> — averages hide inequality</li></ul>" },
-      { type: 'p', html: "<i class='friendly'>This is exactly what your Hurricane Harvey assignment was about — rebuilding gets counted but the lost lives, displaced families, and destroyed assets don't get subtracted. GDP can rise during disasters and that's the metric's failure, not a real benefit.</i>" }
+      { type: 'p', html: "<i class='friendly'>This is exactly what your Hurricane Harvey assignment was about — rebuilding gets counted but the lost lives, displaced families, and destroyed assets don't get subtracted. GDP can rise during disasters and that's the metric's failure, not a real benefit.</i>" },
+      { type: 'h3', text: "GDP per Capita & Converting Nominal → Real" },
+      { type: 'formula', text: "GDP per capita = GDP / Population", note: "Best rough measure of average living standard" },
+      { type: 'p', html: "To <b>convert nominal GDP into real GDP</b>, divide nominal by the deflator (then multiply by 100):" },
+      { type: 'formula', text: "Real GDP = Nominal GDP ÷ (Deflator / 100)", note: "Equivalent: Real = Nominal × 100 / Deflator" },
+      { type: 'p', html: "Example: Nominal GDP = $25T, Deflator = 125. Real GDP = 25 / 1.25 = $20T. (Prices are 25% higher than the base year, so real output is lower than nominal.)" },
+      { type: 'h3', text: "GDP and Business Cycles" },
+      { type: 'p', html: "<b>Business cycles / business fluctuations</b> = the ups and downs of real GDP around its long-term trend. <b>Booms</b> = above-trend growth. <b>Recessions</b> = significant, widespread declines (NBER officially calls them in the US). The popular '2 quarters of negative growth' rule is shorthand, NOT the official definition." },
+      { type: 'p', html: "Note that quarterly GDP estimates get revised — sometimes years later. This makes GDP a slow signal for spotting recessions in real time." }
     ],
     flashcards: [
       { term: "GDP", def: "Market value of all finished goods and services produced within a country in a year." },
+      { term: "GDP per capita", def: "GDP divided by population. The standard rough measure of average living standard." },
       { term: "Nominal GDP", def: "GDP at current-year prices (mixes price changes and quantity changes)." },
-      { term: "Real GDP", def: "GDP at constant base-year prices (strips out inflation)." },
+      { term: "Real GDP", def: "GDP at constant base-year prices (strips out inflation). Use this to compare years." },
       { term: "GDP Deflator", def: "(Nominal/Real) × 100. A price index covering all GDP components." },
+      { term: "Real Price", def: "A price corrected for inflation, used to compare prices across years honestly." },
       { term: "Intermediate good", def: "Sold to firms for processing into a final good. NOT counted directly (avoid double-counting)." },
+      { term: "Finished good", def: "Sold to a final user. The thing actually counted in GDP." },
+      { term: "Consumption (C)", def: "Private spending on finished goods and services. Largest component of US GDP (~68%)." },
       { term: "Investment (I)", def: "Purchase of new capital — tools, plant, equipment. Includes new homes and inventory changes." },
+      { term: "Government Purchases (G)", def: "Spending by all levels of government on goods and services. Excludes transfers." },
       { term: "Transfer payments", def: "Government cash to citizens (Social Security, welfare). NOT in G — would double-count." },
       { term: "Net Exports (NX)", def: "Exports minus Imports (X − M)." },
+      { term: "Underground economy", def: "Illegal or off-the-books transactions. Not in GDP. ~10–20% of US GDP, ~41% in Latin America." },
+      { term: "Nonpriced production", def: "Valuable goods/services with no market price (housework, volunteering). Not in GDP." },
       { term: "Recession", def: "Significant, widespread decline in real GDP, income, employment, and sales lasting more than a few months. NBER calls them." },
+      { term: "Business cycles / fluctuations", def: "Ups and downs of real GDP around its long-term trend." },
+      { term: "National wealth", def: "Stock of all assets in a country. Different from GDP (which is a yearly flow)." },
       { term: "GNP vs GDP", def: "GNP = by citizens anywhere. GDP = inside borders by anyone." }
     ],
     formulas: [
       { f: "GDP = C + I + G + NX", n: "National spending approach" },
+      { f: "GDP per capita = GDP / Population", n: "Living-standard rough measure" },
       { f: "Growth Rate = (Y₂ − Y₁) / Y₁ × 100%", n: "Use Real GDP for living standards" },
       { f: "GDP Deflator = (Nominal GDP / Real GDP) × 100", n: "Price index" },
-      { f: "Real GDP = Nominal GDP / (Deflator/100)", n: "Solve for real when given nominal & deflator" }
+      { f: "Real GDP = Nominal GDP / (Deflator/100)", n: "Convert nominal to real" }
     ],
     graphs: [],
     quiz: [
@@ -324,9 +343,17 @@ const CHAPTERS = [
       { type:'mc', q:"Which is INCLUDED in GDP?", opts:["Mom cooking dinner at home","A volunteer cleaning a park","A nanny paid $20k","Friends helping you move"], a:2, ex:"Only the paid nanny is a market transaction. The others are nonpriced production — valuable but not in GDP. This biases comparisons across countries (more work happens at home in poorer nations)." },
       { type:'tf', q:"If imports rise by $10B and nothing else changes, GDP falls by $10B.", a:false, ex:"Trick! If imports rise by $10B, it's because someone bought them — so C, I, or G also rose by $10B. The +$10B and −$10B cancel. Imports don't reduce GDP; the formula just nets them out." },
       { type:'short', q:"In 2–3 sentences, explain why GDP per capita is an imperfect measure of well-being. Use one example from the chapter.", a:["distribution","inequality","pollution","environment","health","leisure","household","underground","nonpriced","quality","life","longevity","bads"], ex:"Strong answers mention: it doesn't capture distribution (average masks inequality), ignores nonpriced production (housework, volunteering), doesn't subtract bads (pollution, crime), and misses health/longevity. Bonus for connecting to your assignment about RFK's quote." },
-      { type:'mc', q:"In a recession, which best describes the trend?", opts:["Declines in GDP only","Declines in GDP, income, employment, and sales — widespread and lasting","Just a single quarter of negative growth","High inflation only"], a:1, ex:"NBER's definition emphasizes WIDESPREAD decline across multiple indicators (GDP, income, employment, sales) lasting more than a few months. The two-quarter rule is a common shorthand but not the official definition." }
+      { type:'mc', q:"In a recession, which best describes the trend?", opts:["Declines in GDP only","Declines in GDP, income, employment, and sales — widespread and lasting","Just a single quarter of negative growth","High inflation only"], a:1, ex:"NBER's definition emphasizes WIDESPREAD decline across multiple indicators (GDP, income, employment, sales) lasting more than a few months. The two-quarter rule is a common shorthand but not the official definition." },
+      { type:'calc', q:"GDP = $24 trillion. Population = 330 million. Calculate GDP per capita ($).", a:72727, tol:50, ex:"GDP per capita = GDP / Population = 24,000,000,000,000 / 330,000,000 ≈ $72,727. This is the average — actual income distribution varies widely." },
+      { type:'calc', q:"Nominal GDP = $30 trillion. GDP Deflator = 120. Calculate Real GDP ($ trillions).", a:25, tol:0.1, ex:"Real GDP = Nominal / (Deflator/100) = 30 / 1.20 = $25T. Prices are 20% higher than the base year, so real output is less than nominal." },
+      { type:'mc', q:"In which order are the four GDP components ranked from LARGEST to smallest in the US?", opts:["G, C, I, NX","C, I, G, NX","C, G, I, NX","I, C, G, NX"], a:2, ex:"In 2021: C (~68%) > G (~17.8%) > I (~17.6%) > NX (~−3%). C is by far the dominant share." },
+      { type:'tf', q:"A new home built this year and sold to a family is counted as Investment (I), not Consumption (C).", a:true, ex:"Yes — new home production is the one residential exception that goes into Investment, not Consumption. Existing home sales are NOT in GDP at all (only the realtor's commission)." },
+      { type:'mc', q:"A professor's $90,000 salary at a state university is counted in GDP as part of:", opts:["Consumption (C)","Investment (I)","Government Purchases (G)","Net Exports (NX)"], a:2, ex:"State universities are government entities. Wages paid to government employees count as G — the government is implicitly buying their services." },
+      { type:'short', q:"In 2–3 sentences, explain how to convert nominal GDP into real GDP, and why we'd want to.", a:["deflator","divide","price","compare","inflation","real","across years"], ex:"Strong answers cover: divide nominal GDP by (Deflator/100) to strip out the inflation component. We want real because it shows true changes in production/output, not changes mixed with price increases. Real GDP is what we use to compare living standards across years." },
+      { type:'tf', q:"GDP and national wealth measure the same thing.", a:false, ex:"GDP is a FLOW (annual production). National wealth is a STOCK (accumulated assets). Crude US estimate: GDP ~$25T per year, national wealth ~$145T. Same difference as wages vs net worth for a person." },
+      { type:'mc', q:"Why is the underground economy a bigger problem for GDP comparisons in Haiti or Latin America than in the US?", opts:["The US has no underground economy","Underground transactions there are a much larger share of total activity (~41% vs ~10–20%)","Latin Americans don't pay taxes","The US has stricter laws"], a:1, ex:"Higher corruption + tax evasion + bureaucratic friction → much larger informal sector. Official GDP statistics significantly understate true output in these countries." }
     ],
-    topics: ["GDP definition","Nominal vs Real","Spending approach","Imports trick","GDP problems","Growth rate calc","Deflator calc","Recession definition"]
+    topics: ["GDP definition","Nominal vs Real","Spending approach","Imports trick","GDP problems","Growth rate calc","Deflator calc","Recession definition","GDP per capita","Components ranking","Real GDP conversion","Underground economy"]
   },
 
   /* ---------------- CHAPTER 27 ---------------- */
@@ -348,18 +375,27 @@ const CHAPTERS = [
       { type: 'p', html: "<i class='friendly'>Big idea: the ultimate causes of wealth aren't tractors and schools — they're the rules that make people want to build tractors and go to school in the first place.</i>" }
     ],
     flashcards: [
+      { term: "Economic growth", def: "Sustained increase in real GDP per capita over time. The long-run engine of rising living standards." },
       { term: "Physical capital (K)", def: "Tools in the broadest sense — tractors, factories, computers, infrastructure." },
       { term: "Human capital (eL)", def: "Tools in the mind — education, skills, training. Built via investment in people." },
       { term: "Technological knowledge (A)", def: "How the world works. Built via R&D. Nonrival — can be shared infinitely." },
+      { term: "Factors of production", def: "Physical capital, human capital, and technological knowledge — combined through organization to produce output." },
+      { term: "Organization", def: "How factors of production are combined and coordinated. Depends on institutions." },
       { term: "Institutions", def: "The 'rules of the game' — laws, customs, practices that shape incentives." },
       { term: "Property rights", def: "Legal protection of ownership. Without them, why save or invest?" },
+      { term: "Honest government", def: "Low corruption. Officials enforce rules fairly rather than for personal gain." },
+      { term: "Political stability", def: "Predictable rules of the game. Allows long-term planning and investment." },
+      { term: "Dependable legal system", def: "Contracts get enforced impartially. Crucial for trade and lending." },
+      { term: "Competitive and open markets", def: "Free entry, prices determined by supply/demand, no monopolistic barriers." },
       { term: "Rule of 70", def: "Years to double = 70 / growth rate (%). 2% growth doubles in 35 years; 7% in 10." },
       { term: "Big Idea One", def: "Incentives matter." },
-      { term: "Big Idea Two", def: "Good institutions align self-interest with social interest." }
+      { term: "Big Idea Two", def: "Good institutions align self-interest with social interest." },
+      { term: "Growth miracle", def: "Rapid economic growth in a short period — like postwar Japan, South Korea, or post-1978 China." }
     ],
     formulas: [
       { f: "Years to double ≈ 70 / growth rate %", n: "Rule of 70 — small growth differences compound massively" },
-      { f: "GDP per capita = GDP / Population", n: "What matters for living standards" }
+      { f: "GDP per capita = GDP / Population", n: "What matters for living standards" },
+      { f: "Output per worker depends on K/L, eL, and A", n: "Productivity = factors × organization" }
     ],
     graphs: [
       { id: 'hockey', title: "GDP per capita over time (the hockey stick)", desc: "Flat for ~1,800 years, then explosive growth in industrialized nations." }
@@ -370,9 +406,21 @@ const CHAPTERS = [
       { type:'mc', q:"Which is NOT one of the five key institutions for growth?", opts:["Property rights","High taxes","Honest government","Dependable legal system"], a:1, ex:"The five are: property rights, honest government, political stability, dependable legal system, competitive/open markets. High taxes is not on the list (and actually can discourage investment)." },
       { type:'calc', q:"If a country grows at 4% per year, roughly how many years until GDP doubles? (Use the rule of 70)", a:17.5, tol:0.5, ex:"70 / 4 = 17.5 years. Compare to 2% growth = 35 years to double. Small differences in growth, huge differences in outcomes." },
       { type:'tf', q:"Technological knowledge and human capital are the same thing.", a:false, ex:"Different! Tech knowledge = what humanity has discovered (the chemistry behind a vaccine). Human capital = what's in YOUR head that lets you use it (the years of training to administer it). One can exist without the other being widespread." },
-      { type:'short', q:"Explain in 2–3 sentences why the Xiaogang farmers' secret agreement worked so well.", a:["property","incentive","keep","quota","self-interest","own","reward","work harder","aligned"], ex:"Strong answers mention: by giving farmers property rights to their excess output, the agreement aligned self-interest with the social interest. Farmers worked harder because they kept what they produced — exactly the opposite of the commune system where effort and reward were divorced." }
+      { type:'short', q:"Explain in 2–3 sentences why the Xiaogang farmers' secret agreement worked so well.", a:["property","incentive","keep","quota","self-interest","own","reward","work harder","aligned"], ex:"Strong answers mention: by giving farmers property rights to their excess output, the agreement aligned self-interest with the social interest. Farmers worked harder because they kept what they produced — exactly the opposite of the commune system where effort and reward were divorced." },
+      { type:'calc', q:"Country A grows at 2% per year. Country B grows at 5% per year. After 70 years, what is the ratio of B's GDP per capita to A's? (Approximate)", a:8, tol:0.5, ex:"Rule of 70: A doubles every 35 years (~2× over 70 yrs). B doubles every 14 years (~32× over 70 yrs). Ratio ≈ 32/4 ≈ 8. Tiny growth differences = enormous wealth gaps over generations." },
+      { type:'mc', q:"Roughly how much higher is GDP per capita in the world's richest countries vs the poorest?", opts:["About 5×","About 10×","About 50×","About 500×"], a:2, ex:"Around 50× — that's the staggering wealth gap the chapter highlights. The US vs Burundi or Liberia, for example." },
+      { type:'mc', q:"Which is the BEST example of physical capital?", opts:["A worker's college degree","A factory's assembly line","A patent on a new drug","A friendly business culture"], a:1, ex:"Physical capital = tangible tools. Assembly line = clear example. Degree = human capital. Patent = technological knowledge. Business culture = institutional/cultural." },
+      { type:'mc', q:"Per the chapter, what was GDP per capita roughly like for ALL major world regions in year 1 AD?", opts:["~$100","~$700–1,000","~$5,000","~$25,000"], a:1, ex:"Roughly $700–1,000 in 2015 dollars across all major regions. Poverty was the universal default for almost all of human history. The 'hockey stick' shows wealth is the new and unusual outcome." },
+      { type:'tf', q:"Without property rights, people have strong incentives to invest and save.", a:false, ex:"Opposite. Why save or invest if it might be confiscated? Property rights are foundational because they give people confidence that the rewards of effort and investment belong to them." },
+      { type:'short', q:"In 2–3 sentences, explain how institutions, incentives, factors of production, and GDP relate to each other.", a:["institution","incentive","factor","invest","produce","grow","align","self-interest"], ex:"Strong answers trace the causal chain: good institutions → strong incentives to invest in physical/human capital and develop technology → more and better factors of production → higher GDP per capita. The institutions are the deepest cause; factors are the proximate cause." },
+      { type:'mc', q:"India's farmers produce far less corn per acre than US farmers. The chapter attributes this MOST to:", opts:["Different soil","Less physical capital, less human capital, less tech knowledge","More rainfall in the US","Government subsidies"], a:1, ex:"US farmers use tractors with GPS, scientifically-bred seeds, and applied chemistry — that's all three factors of production stacked together. The institutions also enable farmers to invest in those things." },
+      { type:'tf', q:"Wealth, not poverty, is the historical anomaly for humanity.", a:true, ex:"Yes — for ~99% of recorded history, almost everyone was poor. Sustained economic growth only really began around 1800 in some regions. This is one of the chapter's three key facts." },
+      { type:'mc', q:"Why did the Great Leap Forward (1958–1962) cause famine?", opts:["Bad weather","Communal property removed individual incentives to work, plus poor planning","Foreign invasion","Disease outbreak"], a:1, ex:"Communal property meant a worker's effort earned only ~1/100th of the resulting output → free riding became rational → output collapsed. ~20–40 million Chinese died. Misaligned incentives at scale." },
+      { type:'mc', q:"Which is the BEST example of how INSTITUTIONS shape factors of production?", opts:["More rainfall growing more crops","Strong patent law leading firms to invest in R&D","Population growth","Geographic location"], a:1, ex:"Patents (institution) → incentive to invent (R&D) → more technological knowledge (factor) → more output. This is the institution-to-factor-to-output chain in action." },
+      { type:'short', q:"In 2–3 sentences, explain why two countries with similar amounts of physical capital can have very different GDP per capita.", a:["organize","institution","ideas","technology","human capital","productivity","efficient"], ex:"Strong answers mention: factors of production must be ORGANIZED productively. The Soviet Union had lots of capital but used it inefficiently. Differences in human capital, technological knowledge, and especially institutions can create huge productivity differences even with similar physical capital." },
+      { type:'tf', q:"The 'ultimate' causes of wealth (geography, history, ideas, culture, luck) are well understood by economists.", a:false, ex:"The chapter is honest: the proximate causes (factors + organization) are clearer than the ultimate causes. Why some societies developed good institutions and others didn't is a hard, partially-answered question." }
     ],
-    topics: ["Hockey stick","Factors of production","Human vs physical capital","Institutions","Property rights","Korea example","Rule of 70"]
+    topics: ["Hockey stick","Factors of production","Human vs physical capital","Institutions","Property rights","Korea example","Rule of 70","Organization","Big Ideas","Growth miracle","Institutions-factors-GDP chain"]
   },
 
   /* ---------------- CHAPTER 28 ---------------- */
@@ -395,7 +443,11 @@ const CHAPTERS = [
       { type: 'h3', text: "Investment Rate Matters" },
       { type: 'formula', text: "Investment = γ × Y", note: "γ = savings/investment rate. Higher γ → higher steady-state K and Y" },
       { type: 'p', text: "But notice: a higher investment rate raises the LEVEL of GDP, not the long-run growth RATE. In the very long run, if A is constant, growth still stops at the new (higher) steady state." },
-      { type: 'h3', text: "Ideas: How to Escape the Iron Logic" },
+      { type: 'h3', text: "Movement to a New Steady State (often tested)" },
+      { type: 'p', html: "When something changes — investment rate rises, depreciation rate falls, technology jumps — the economy <b>moves toward a new steady state</b>. The transition is not instant:" },
+      { type: 'card', accent: 'g', html: "<ol><li>The change happens (e.g., γ rises from 0.3 to 0.4).</li><li>Investment now exceeds depreciation → capital starts accumulating.</li><li>Output rises, but at a <b>decelerating rate</b> (diminishing returns).</li><li>Eventually, with more capital, depreciation catches up to investment again.</li><li>New steady state reached — at higher K* and higher Y* than before, but growth has stopped again.</li></ol>" },
+      { type: 'p', html: "<b>Key insight:</b> the change creates TEMPORARY growth during the transition. Once at the new steady state, growth stops. Sustained long-run growth requires sustained increases in <b>A</b> (ideas), not one-time changes in K." },
+      { type: 'h3', text: "Better Ideas Drive Long-Run Growth" },
       { type: 'p', text: "If only K grows (with A fixed), growth eventually stops. But if A keeps growing — better ideas — the production function shifts UP and growth continues forever." },
       { type: 'card', accent: 'l', html: "<b>Key properties of ideas:</b><ul><li><b>Nonrival</b> — you and I can use the same idea simultaneously (vs. an apple, which is rival)</li><li><b>Spillovers</b> — others benefit from your idea even if you invented it. Good for society, bad for inventor's incentives</li><li><b>Underprovided</b> — because of spillovers, private R&D is below the social optimum</li></ul>" },
       { type: 'p', html: "<b>Patents</b> = government grant of temporary monopoly (typically 20 years). They <b>increase incentive</b> to innovate but <b>create monopoly power</b> — the great innovation policy trade-off." },
@@ -404,20 +456,27 @@ const CHAPTERS = [
     flashcards: [
       { term: "Production Function", def: "Y = F(A, K, eL). Output depends on ideas, capital, and human-capital-adjusted labor." },
       { term: "Diminishing returns to capital", def: "Each additional unit of K adds less output than the previous one (with L and A fixed)." },
-      { term: "Marginal product of capital (MPK)", def: "Extra output from one more unit of K. Falls as K rises." },
-      { term: "Steady state", def: "When investment equals depreciation. Capital stock stops growing." },
+      { term: "Marginal product of capital (MPK)", def: "Extra output from one more unit of K. Falls as K rises. The 'iron logic' of Solow." },
+      { term: "Investment rate (γ)", def: "Fraction of output that is saved and invested (γY = total investment)." },
+      { term: "Depreciation rate (δ)", def: "Fraction of capital that wears out each period. Total depreciation = δK." },
+      { term: "Steady state", def: "When investment (γY) equals depreciation (δK). Capital stock stops growing." },
+      { term: "Movement to new steady state", def: "Transition period after a shock — temporary growth that decelerates and eventually stops at a new equilibrium." },
       { term: "Catching-up growth", def: "Fast growth from accumulating capital when starting below steady state. China, postwar Germany/Japan." },
       { term: "Cutting-edge growth", def: "Growth via NEW ideas. The only way to escape diminishing returns long-term. US, Western Europe." },
-      { term: "Conditional convergence", def: "Countries grow faster the further they are below their steady state." },
+      { term: "Conditional convergence", def: "Countries grow faster the further they are below their steady state. Predicts catch-up." },
       { term: "Nonrival good", def: "Many people can use it at once without subtracting. Ideas are nonrival; apples are rival." },
       { term: "Spillover", def: "Benefits of an idea that flow to people other than the inventor. Why R&D is underprovided." },
-      { term: "Patent", def: "Government grant of temporary monopoly (~20 yrs) to encourage innovation. Trade-off: incentive vs monopoly power." }
+      { term: "R&D", def: "Research and Development — the activity that produces new ideas (A)." },
+      { term: "Patent", def: "Government grant of temporary monopoly (~20 yrs) to encourage innovation. Trade-off: incentive vs monopoly power." },
+      { term: "Solow's 75% finding", def: "Solow estimated ~75% of US prosperity comes from better IDEAS (A), not just more capital." }
     ],
     formulas: [
       { f: "Y = F(A, K, eL)", n: "Full Solow production function" },
       { f: "Y = √K  (simplified)", n: "Used for basic graph examples" },
       { f: "Investment = γ × Y", n: "γ is savings/investment rate" },
-      { f: "Steady state: γY = δK", n: "Investment equals depreciation (δ = depreciation rate)" }
+      { f: "Depreciation = δ × K", n: "δ is depreciation rate" },
+      { f: "Steady state: γY = δK", n: "Investment equals depreciation" },
+      { f: "MPK falls as K rises", n: "Diminishing returns — the iron logic" }
     ],
     graphs: [
       { id: 'solow', title: "The Solow Diagram", desc: "Production function Y = √K (mint), Investment γY (peach), Depreciation δK (rose). Steady state where investment crosses depreciation." }
@@ -430,9 +489,19 @@ const CHAPTERS = [
       { type:'mc', q:"Why is private investment in R&D usually less than the social optimum?", opts:["R&D is too expensive","Spillovers — inventors don't capture all the benefits","Government regulations","Workers are lazy"], a:1, ex:"When others can copy or benefit from your idea, your private return is less than the social return. So you invest less than would be socially ideal. This justifies patents and R&D subsidies." },
       { type:'calc', q:"In the simple Solow model with Y = √K, if K = 100, what is Y?", a:10, tol:0.01, ex:"Y = √100 = 10. Now check diminishing returns: at K=400, Y=20 (4× the K, only 2× the Y). That's the iron logic in action." },
       { type:'short', q:"Explain in 2–3 sentences why bombing a country (like Germany or Japan in WWII) can RAISE its growth rate afterward, according to the Solow model.", a:["below steady","capital","marginal product","catching","invest","convergence","destroyed","rebuild"], ex:"Strong answers mention: destruction pushes the country far below its steady state. With less capital, the marginal product of capital becomes very high. New investment yields rapid growth as the country 'catches up' to its steady state. (This is conditional convergence in action.)" },
-      { type:'mc', q:"Which is the BEST example of cutting-edge growth?", opts:["China building factories","India electrifying villages","US developing AI and biotech","Vietnam adopting cell phones"], a:2, ex:"Cutting-edge growth = inventing NEW ideas at the technological frontier. The other examples are catching-up growth (adopting/accumulating things that already exist elsewhere)." }
+      { type:'mc', q:"Which is the BEST example of cutting-edge growth?", opts:["China building factories","India electrifying villages","US developing AI and biotech","Vietnam adopting cell phones"], a:2, ex:"Cutting-edge growth = inventing NEW ideas at the technological frontier. The other examples are catching-up growth (adopting/accumulating things that already exist elsewhere)." },
+      { type:'calc', q:"In the Solow model, K = 400 and Y = √K. What is the marginal product of going from K=400 to K=441?", a:1, tol:0.05, ex:"Y(400) = 20. Y(441) = 21. The 41 extra units of K added only 1 unit of Y → MPK ≈ 1/41 ≈ 0.024 per unit. Diminishing returns: the same K added at K=0 would have produced way more output." },
+      { type:'mc', q:"In the Solow diagram, the steady state is the point where:", opts:["Output is at its maximum","Investment equals depreciation","Capital is zero","Production function intersects the y-axis"], a:1, ex:"Steady state: γY = δK. New investment just covers worn-out capital. K stops growing → Y stops growing. Below steady state: K grows. Above steady state: K shrinks." },
+      { type:'tf', q:"A higher depreciation rate (δ) leads to a lower steady-state level of capital.", a:true, ex:"Yes — if capital wears out faster, more investment goes just to replacing it, leaving less for net growth. Steady state is reached at a lower K*. Try shifting the rose-colored depreciation line up on the diagram and watch where it intersects investment." },
+      { type:'short', q:"In 2–3 sentences, describe what happens when the investment rate γ rises from 0.3 to 0.4.", a:["temporary","grow","new steady","capital","accumulate","higher","level"], ex:"Strong answers: investment now exceeds depreciation, so capital starts accumulating. Output grows during the transition. As K rises, diminishing returns slow growth until depreciation catches up to investment again at a NEW (higher) steady state. Growth stops there. Permanent level boost, temporary growth boost." },
+      { type:'mc', q:"Which is NOT a property of ideas?", opts:["Nonrival","Generate spillovers","Depreciate quickly with use","Often produce more ideas"], a:2, ex:"Ideas DON'T depreciate with use. The Pythagorean theorem is just as useful today as 2,500 years ago. This nonrivalry is what makes idea-driven growth potentially unlimited." },
+      { type:'mc', q:"The patent system creates which trade-off?", opts:["Incentive to innovate vs free-rider problem","Incentive to innovate vs monopoly pricing power","Government revenue vs consumer welfare","Speed vs safety"], a:1, ex:"Patents give inventors monopoly power for ~20 years (good — incentive to innovate) but also raise prices and slow diffusion (bad — monopoly inefficiency). One of the trickiest trade-offs in economic policy." },
+      { type:'calc', q:"In the Solow model, with γ = 0.3 and Y = √K, find investment when K = 100.", a:3, tol:0.05, ex:"Investment = γY = 0.3 × √100 = 0.3 × 10 = 3. To find steady state, set this equal to δK and solve for K." },
+      { type:'tf', q:"Solow estimated that capital accumulation alone explains most of US economic prosperity.", a:false, ex:"Opposite — Solow estimated ~75% of US prosperity comes from better IDEAS (rising A), not from capital accumulation. That's why developed-country growth is about innovation, not building more factories." },
+      { type:'mc', q:"Why does growth in China appear to be slowing down in recent years (per the Solow model)?", opts:["Bad weather","As K accumulates, the MPK falls — diminishing returns","China stopped saving","Too many factories"], a:1, ex:"China's catch-up growth was driven by very high MPK (because K was scarce). As K accumulates, that MPK falls — and so does the growth rate. The Solow model predicts this deceleration." },
+      { type:'short', q:"In 2–3 sentences, explain why Solow's basic model (without ideas) predicts that long-run growth eventually stops.", a:["diminishing","steady state","invest","depreciat","stops","accumulate","capital"], ex:"Strong answers: as K rises, MPK falls. Eventually new investment can only replace depreciation, not add to net K. At that steady state, capital stops accumulating, so output stops growing. The only escape is rising A (better ideas), which the basic model holds constant." }
     ],
-    topics: ["Production function","Diminishing returns","Steady state","Catching-up vs cutting-edge","Conditional convergence","Ideas (nonrival/spillovers)","Patents","Investment rate"]
+    topics: ["Production function","Diminishing returns","Steady state","Catching-up vs cutting-edge","Conditional convergence","Ideas (nonrival/spillovers)","Patents","Investment rate","MPK","Movement to new steady state","Solow diagram","Depreciation"]
   },
 
   /* ---------------- CHAPTER 29 ---------------- */
@@ -490,9 +559,16 @@ const CHAPTERS = [
       { type:'mc', q:"Why was Lehman Brothers' 44× leverage so dangerous?", opts:["The CEO was inexperienced","A small drop in asset values could make them insolvent","They were too small","They didn't have enough employees"], a:1, ex:"At 44× leverage, every $100 in assets was backed by ~$2.30 in equity. A 2.3% decline in asset values wipes out the equity entirely — bankruptcy. When housing fell sharply in 2007–08, that's exactly what happened." },
       { type:'tf', q:"Junk bonds typically pay LOWER interest rates than AAA-rated bonds.", a:false, ex:"Opposite. Junk bonds (below BBB-) have higher default risk, so investors demand higher yields to compensate. AAA bonds are the safest and pay the lowest rates." },
       { type:'short', q:"In 2–3 sentences, explain what 'shadow banking' is and why it was central to the 2008 crisis.", a:["unregulated","insurance","FDIC","run","panic","traditional","mortgage","securitization","credit"], ex:"Strong answers cover: shadow banks (investment banks, money market funds) did bank-like things — taking short-term deposits and making longer-term loans — but without FDIC insurance and with lighter regulation. By 2008 they were larger than traditional banking. When housing prices fell, depositors panicked and ran on shadow banks, freezing trillions in credit." },
-      { type:'mc', q:"All else equal, which would shift the SUPPLY of loanable funds RIGHT?", opts:["A drop in life expectancy (people expect to die younger)","Government deficit spending","An increase in patience / desire to save","An investment tax credit"], a:2, ex:"More patience → more saving at every interest rate → supply shifts right. The first option REDUCES savings (no point saving if you'll die soon). The other two affect demand, not supply." }
+      { type:'mc', q:"All else equal, which would shift the SUPPLY of loanable funds RIGHT?", opts:["A drop in life expectancy (people expect to die younger)","Government deficit spending","An increase in patience / desire to save","An investment tax credit"], a:2, ex:"More patience → more saving at every interest rate → supply shifts right. The first option REDUCES savings (no point saving if you'll die soon). The other two affect demand, not supply." },
+      { type:'mc', q:"An investment tax credit shifts the demand for loanable funds:", opts:["Right (up)","Left (down)","Doesn't shift it","Makes it vertical"], a:0, ex:"Tax credit makes investment cheaper → firms want to invest more at every interest rate → demand shifts right/up. Result: higher equilibrium interest rate AND more investment." },
+      { type:'calc', q:"Buyer puts $80,000 down on a $400,000 house. What's their owner's equity (in $)?", a:80000, tol:1, ex:"Owner's equity = home value − mortgage owed = $400,000 − $320,000 = $80,000. The 20% down payment IS their equity cushion. If the home drops to $350k, equity falls to $30k but they're still solvent." },
+      { type:'tf', q:"Banks reduce risk by lending one borrower a large sum rather than spreading loans across many borrowers.", a:false, ex:"Opposite — banks SPREAD risk across many borrowers. If one defaults, losses are contained. Concentrated lending = catastrophic when one big borrower fails." },
+      { type:'mc', q:"Why do home loans typically have LOWER interest rates than vacation loans?", opts:["Banks like homes more","The house can be repossessed (collateral) — less risk to lender","Vacations are riskier activities","Federal regulation forces it"], a:1, ex:"Collateral! The bank can foreclose on a house if you default — it's a tangible asset they can sell. Vacations leave nothing to repossess, so the lender demands a higher rate to compensate for higher risk." },
+      { type:'mc', q:"In a usury law (interest rate ceiling) BELOW the equilibrium rate, what happens?", opts:["More lending and lower rates for everyone","Shortage of credit — quantity demanded exceeds quantity supplied","Banks make more profit","Inflation rises"], a:1, ex:"Just like price ceilings on oil. Quantity demanded > quantity supplied at the controlled rate → credit shortage. Some borrowers can't get loans, savers reduce supply, investment falls." },
+      { type:'short', q:"In 2–3 sentences, explain how AIDS in Africa created a vicious cycle through reduced savings.", a:["life expectancy","save","invest","growth","health","cycle","short","death"], ex:"Strong answers: lower life expectancy → less reason to save for the future → lower savings rate → less capital accumulation → slower economic growth → fewer resources to fight disease → continued low life expectancy. A real-world example of how consumption-smoothing motives interact with macroeconomic outcomes." },
+      { type:'mc', q:"Which is the BEST example of securitization?", opts:["A bank making a single mortgage loan","Bundling thousands of mortgages and selling shares of the bundle to investors","A homeowner refinancing","Apple issuing new stock"], a:1, ex:"Securitization = packaging loans (often mortgages) into financial products that can be sold to investors worldwide. Spread risk... unless the underlying loans are bad and the risk was misrepresented (see 2008)." }
     ],
-    topics: ["Loanable funds market","Crowding out","Bonds & default risk","Leverage","Securitization","Shadow banking","Why people save/borrow","2008 crisis"]
+    topics: ["Loanable funds market","Crowding out","Bonds & default risk","Leverage","Securitization","Shadow banking","Why people save/borrow","2008 crisis","Owner's equity","Collateral","Interest rate ceilings","Risk spreading"]
   },
 
   /* ---------------- CHAPTER 30 ---------------- */
@@ -517,22 +593,29 @@ const CHAPTERS = [
     ],
     flashcards: [
       { term: "Unemployed", def: "Adult, not institutionalized, civilian, actively looking for work, has no job." },
+      { term: "Employed", def: "Adult, non-institutionalized civilian with a job (full or part time)." },
+      { term: "Adult/civilian non-institutionalized population", def: "16+, not in prison/military/hospital. The denominator for LFPR." },
       { term: "Labor Force", def: "Employed + Unemployed." },
-      { term: "Unemployment Rate", def: "Unemployed / Labor Force × 100." },
+      { term: "Unemployment Rate (U-3)", def: "Unemployed / Labor Force × 100. Official headline rate." },
+      { term: "U-6 Rate", def: "Broader rate including discouraged workers AND part-time-for-economic-reasons. Always higher than U-3." },
       { term: "Labor Force Participation Rate", def: "Labor Force / Adult Population × 100." },
-      { term: "Frictional Unemployment", def: "Short-term joblessness from normal job-search frictions. Always exists." },
+      { term: "Frictional Unemployment", def: "Short-term joblessness from normal job-search frictions. Always exists in a healthy economy." },
       { term: "Structural Unemployment", def: "Persistent, long-term unemployment from economy-wide shifts and rigid labor regulations." },
       { term: "Cyclical Unemployment", def: "Unemployment tied to the business cycle. Spikes in recessions." },
-      { term: "Natural Unemployment Rate", def: "Frictional + Structural. The 'normal' baseline." },
+      { term: "Natural Unemployment Rate", def: "Frictional + Structural. The 'normal' baseline. Excludes cyclical." },
       { term: "Discouraged Worker", def: "Wants a job but stopped looking. NOT counted in official unemployment." },
-      { term: "U-6 Rate", def: "Broader unemployment measure including discouraged and part-time-for-economic-reasons workers. Always higher than official." },
-      { term: "Creative Destruction", def: "Schumpeter's idea: new industries create jobs while destroying old ones." }
+      { term: "Creative Destruction", def: "Schumpeter's idea: new industries create jobs while destroying old ones. Frictional unemployment is part of this." },
+      { term: "Employment Protection Laws", def: "Rules making it hard to fire workers. Help current workers, but discourage new hiring → contributes to structural unemployment." },
+      { term: "Replacement Rate", def: "Percent of prior wages replaced by unemployment benefits. Higher rate → less urgency to find work." },
+      { term: "Lifecycle effects", def: "LFPR varies with age — peaks at 25–54, drops at 16–19 (school) and 65+ (retirement)." },
+      { term: "Implicit tax on working", def: "Lost benefits + payroll taxes when an older worker keeps working past retirement age. High in many European countries." }
     ],
     formulas: [
       { f: "Unemployment Rate = Unemployed / Labor Force × 100", n: "DENOMINATOR is labor force, NOT total population" },
       { f: "Labor Force Participation Rate = Labor Force / Adult Population × 100", n: "Adult = 16+, civilian, non-institutionalized" },
-      { f: "Labor Force = Employed + Unemployed", n: "" },
-      { f: "Natural Rate = Frictional + Structural", n: "Excludes cyclical" }
+      { f: "Labor Force = Employed + Unemployed", n: "Both must be civilians, 16+, non-institutionalized" },
+      { f: "Natural Rate = Frictional + Structural", n: "Excludes cyclical" },
+      { f: "Adult Pop = LF + Not in LF", n: "Not in LF: students, retirees, stay-home parents, discouraged workers" }
     ],
     graphs: [],
     quiz: [
@@ -543,9 +626,19 @@ const CHAPTERS = [
       { type:'mc', q:"Why does Europe (France, Germany, Italy, Spain) have higher long-term unemployment than the US?", opts:["Europeans are lazier","Generous unemployment benefits + strong employment protection reduce both job-search urgency and firms' willingness to hire","Europe has fewer industries","European weather is worse"], a:1, ex:"This is the chapter's key comparison. France replaced 80% of income in year 1 of unemployment in 1994. Hard-to-fire labor → firms hire fewer people. Lower opportunity cost of staying unemployed → longer searches." },
       { type:'tf', q:"Cyclical unemployment is part of the natural unemployment rate.", a:false, ex:"Natural rate = frictional + structural ONLY. Cyclical fluctuates ABOVE the natural rate during recessions and below it in booms." },
       { type:'short', q:"Explain in 2–3 sentences why frictional unemployment is actually a sign of a healthy economy.", a:["matching","search","churn","creative destruction","new","grow","change","best fit"], ex:"Strong answers mention: a dynamic economy creates new jobs (apps, biotech) while destroying old ones (travel agents, blacksmiths). Workers transitioning between jobs is a feature of growth — they're searching for better matches. Schumpeter's creative destruction." },
-      { type:'mc', q:"In November 2022, US unemployment was 6.0M and labor force was 164.5M. Approximate unemployment rate?", opts:["3.6%","6.0%","10.0%","16.4%"], a:0, ex:"6.0 / 164.5 × 100 ≈ 3.6%. Always check whether you're dividing by labor force or total population — the question gave you both." }
+      { type:'mc', q:"In November 2022, US unemployment was 6.0M and labor force was 164.5M. Approximate unemployment rate?", opts:["3.6%","6.0%","10.0%","16.4%"], a:0, ex:"6.0 / 164.5 × 100 ≈ 3.6%. Always check whether you're dividing by labor force or total population — the question gave you both." },
+      { type:'short', q:"In 2–3 sentences, explain how the unemployment benefit system can EXACERBATE structural unemployment.", a:["benefit","longer","search","reservation","lower","incentive","afford","pay"], ex:"Strong answers: high replacement rates lower the cost of being unemployed → workers can afford to search longer for the 'perfect' job rather than accepting available work. Long-duration benefits compound this. France's 80% replacement rate vs US's 38% partly explains why long-term unemployment is so much higher in Europe." },
+      { type:'mc', q:"Recent grad takes 6 weeks to find a software engineering job. This is:", opts:["Frictional","Structural","Cyclical","Not unemployment at all"], a:0, ex:"Short-term, normal job-search delay = frictional. Even in great economies this happens. The Internet has made this kind of unemployment shorter on average." },
+      { type:'mc', q:"Which is NOT in the official labor force?", opts:["A part-time barista","An unemployed person who applied to 5 jobs last week","A retiree","A teacher between school years"], a:2, ex:"Retirees aren't in the labor force (not looking for work). The barista is employed, the unemployed applicant is unemployed (both are in LF), the teacher is employed." },
+      { type:'calc', q:"Adult population = 250M. Employed = 150M. Unemployed = 10M. Calculate the LFPR (%).", a:64, tol:0.1, ex:"LF = 150 + 10 = 160M. LFPR = 160/250 × 100 = 64%. The remaining 36% (90M) are not in the labor force — students, retirees, stay-at-home parents, discouraged workers." },
+      { type:'tf', q:"The U-6 rate is always lower than the official U-3 rate.", a:false, ex:"Opposite — U-6 is broader (adds discouraged workers + part-time-for-economic-reasons), so it's always HIGHER than U-3. In Nov 2022, U-3 was 3.6% but U-6 was 6.7%." },
+      { type:'mc', q:"Recession hits. A construction worker is laid off. After 3 months, he's still looking. This is best classified as:", opts:["Frictional","Structural","Cyclical","Natural"], a:2, ex:"Tied directly to the business cycle (recession) → cyclical. If the recession ends and he gets rehired in his industry, that confirms it. If the underlying industry is collapsing permanently, it could become structural." },
+      { type:'mc', q:"Which policy would MOST LIKELY REDUCE structural unemployment?", opts:["Higher unemployment benefits","Stronger employment protection laws","Job retraining programs and easier job switching","Higher minimum wage"], a:2, ex:"Retraining helps workers move FROM dying industries TO growing ones — addresses the structural mismatch. The other options either reduce job-search urgency or discourage hiring." },
+      { type:'tf', q:"As baby boomers retire, the US labor force participation rate is expected to FALL.", a:true, ex:"Yes — older people have lower LFPR. By 2030, ~20% of US population will be 65+. This demographic shift is a known headwind for LFPR and a major fiscal concern (fewer tax-payers, more Social Security recipients)." },
+      { type:'short', q:"In 2–3 sentences, explain why an 'implicit tax on working' affects LFPR for older workers.", a:["benefit","retire","tax","incentive","lose","work","pension","penalize"], ex:"Strong answers: in some countries, working past retirement age means losing pension benefits AND paying payroll taxes. Net effect: working can pay LESS than retiring. This implicit tax pushes older workers out of the labor force and lowers the LFPR. The Netherlands' 1990s system was an extreme example." },
+      { type:'mc', q:"In November 2022, the US natural rate is estimated around 4–4.5%. The actual rate was 3.6%. This suggests:", opts:["The economy is in a deep recession","The economy is operating slightly above potential (very tight labor market)","Cyclical unemployment is high","The data is wrong"], a:1, ex:"Below the natural rate → cyclical unemployment is negative (the economy is hot, employers can't find workers). This is consistent with the post-COVID labor shortage period." }
     ],
-    topics: ["Unemployment definition","Unemployment rate calc","LFPR calc","Frictional vs structural vs cyclical","Natural rate","Discouraged workers","Europe vs US","Creative destruction"]
+    topics: ["Unemployment definition","Unemployment rate calc","LFPR calc","Frictional vs structural vs cyclical","Natural rate","Discouraged workers","Europe vs US","Creative destruction","Policies that worsen structural unemployment","U-3 vs U-6","Lifecycle/demographics","Labor force composition"]
   },
 
   /* ---------------- CHAPTER 31 ---------------- */
@@ -561,6 +654,9 @@ const CHAPTERS = [
       { type: 'formula', text: "M × V = P × Y", note: "M = money supply, V = velocity, P = price level, Y = real GDP" },
       { type: 'p', html: "This is an <b>identity</b> — true by definition. Both sides equal nominal GDP." },
       { type: 'p', html: "If we assume V is stable (it changes slowly) and Y is fixed by real factors (capital, labor, ideas), then changes in M map directly to changes in P. <b>Inflation is a monetary phenomenon</b> — Friedman's famous claim." },
+      { type: 'h3', text: "Neutrality of Money (key concept)" },
+      { type: 'card', accent: 'l', html: "<b>Money is neutral in the long run.</b> What this means: changes in the money supply change PRICES (P) but do NOT change real output (Y) in the long run. Y is determined by real factors — capital, labor, technology — not by how many dollar bills are floating around.<br><br>If you doubled every dollar in everyone's pocket overnight (and everyone knew it), all prices would eventually double, but real output, real wages, and real consumption would be unchanged. The dollar amounts changed; nothing real did." },
+      { type: 'p', html: "<b>Important caveat:</b> in the SHORT run, money can affect real output (via sticky wages, money illusion, etc. — see Ch 32). Long-run neutrality ≠ short-run neutrality." },
       { type: 'h3', text: "In growth-rate form" },
       { type: 'formula', text: "M̂ + V̂ = P̂ + Ŷ", note: "Growth rates of money + velocity = inflation + real growth. This becomes the AD curve in Ch 32!" },
       { type: 'h3', text: "Zimbabwe & Hyperinflation" },
@@ -575,20 +671,27 @@ const CHAPTERS = [
     ],
     flashcards: [
       { term: "Inflation", def: "Increase in the average level of prices over time." },
+      { term: "Inflation Rate", def: "Percent change in a price index from one period to the next." },
       { term: "CPI", def: "Consumer Price Index. Tracks ~80,000 goods bought by a typical consumer." },
       { term: "GDP Deflator", def: "(Nominal GDP / Real GDP) × 100. Covers all GDP." },
       { term: "PPI", def: "Producer Price Index. Prices producers receive; includes intermediate goods." },
+      { term: "Real Price", def: "A price corrected for inflation. Used to compare prices across years honestly." },
       { term: "Quantity Theory of Money", def: "M × V = P × Y. Identity linking money supply, velocity, prices, and real output." },
       { term: "Velocity (V)", def: "Average number of times a dollar is spent on finished goods/services per year." },
+      { term: "Neutrality of money", def: "In the long run, changes in M change P proportionally but do NOT change real Y. Money has nominal effects only in long run." },
+      { term: "Cause of inflation", def: "Sustained inflation = sustained growth in money supply faster than real output. 'Always and everywhere a monetary phenomenon.'" },
       { term: "Money Illusion", def: "Confusing nominal price changes for real changes in purchasing power." },
       { term: "Inflation Tax", def: "Hidden 'tax' on money holders as inflation erodes purchasing power. Hard to avoid." },
       { term: "Hyperinflation", def: "Extremely rapid, out-of-control inflation — typically >50% per month." },
       { term: "Fisher Effect", def: "Nominal interest rates rise one-for-one with expected inflation." },
       { term: "Real Interest Rate", def: "Nominal rate minus inflation rate — the lender's actual return in purchasing power." },
-      { term: "Menu Costs", def: "Costs of changing posted prices (literally re-printing menus). One source of price stickiness." }
+      { term: "Nominal Interest Rate", def: "The stated/posted interest rate, before adjusting for inflation." },
+      { term: "Menu Costs", def: "Costs of changing posted prices (literally re-printing menus). One source of price stickiness." },
+      { term: "Wealth redistribution from inflation", def: "Unexpected inflation transfers from lenders to borrowers (debts paid back in cheaper dollars)." }
     ],
     formulas: [
       { f: "Inflation Rate = (P₂ − P₁) / P₁ × 100", n: "Use a price index (CPI most common)" },
+      { f: "Real Price = Nominal Price × (CPI_base / CPI_current)", n: "Compare across years" },
       { f: "M × V = P × Y", n: "Quantity theory identity. Both sides = nominal GDP." },
       { f: "M̂ + V̂ = P̂ + Ŷ", n: "Growth-rate form. Foundation of AD curve in Ch 32." },
       { f: "Real Rate ≈ Nominal Rate − Inflation", n: "Lender's actual return" },
@@ -604,9 +707,18 @@ const CHAPTERS = [
       { type:'mc', q:"Who BENEFITS most from UNEXPECTEDLY high inflation?", opts:["Lenders","Borrowers with fixed-rate loans","Savers in cash","Retirees on fixed pensions"], a:1, ex:"Borrowers pay back in dollars worth less than expected. Their real debt burden drops. The 1970s saw huge wealth transfers from mortgage lenders (banks) to borrowers (homeowners) for exactly this reason." },
       { type:'tf', q:"The CPI perfectly captures changes in the cost of living.", a:false, ex:"The CPI has known biases: substitution bias, quality changes (an iPhone today vs 2007), new goods entering the basket. Some economists estimate CPI overstates true inflation by ~0.9%/year." },
       { type:'short', q:"Explain in 2–3 sentences why hyperinflation almost always involves a desperate government and the printing press.", a:["print","money supply","tax","revenue","government","deficit","debt","spending"], ex:"Strong answers note: governments unable to raise taxes or borrow turn to printing money. This rapidly increases M, and per M̂+V̂=P̂+Ŷ, prices spike. Zimbabwe, Weimar Germany, Yugoslavia all followed this pattern. The inflation 'tax' lets the government extract real resources from money holders." },
-      { type:'mc', q:"Money illusion means:", opts:["People can detect counterfeit bills","People mistake nominal changes for real changes","Money has hidden value","Inflation is invisible"], a:1, ex:"If your wage rises 10% and all prices rise 10%, your real purchasing power is unchanged — but you may FEEL richer (and the higher movie ticket may feel like a real price increase). That cognitive bias is money illusion." }
+      { type:'mc', q:"Money illusion means:", opts:["People can detect counterfeit bills","People mistake nominal changes for real changes","Money has hidden value","Inflation is invisible"], a:1, ex:"If your wage rises 10% and all prices rise 10%, your real purchasing power is unchanged — but you may FEEL richer (and the higher movie ticket may feel like a real price increase). That cognitive bias is money illusion." },
+      { type:'short', q:"In 2–3 sentences, explain what 'neutrality of money' means and why it matters.", a:["long run","real","price","output","not change","monetary","neutral"], ex:"Strong answers: in the long run, changes in the money supply affect only nominal variables (prices), not real variables (output, employment, real wages). It matters because central banks can't permanently boost real GDP by printing money — long-run growth requires real factors. Short-run is different though." },
+      { type:'mc', q:"Per the quantity theory, what is the cause of sustained inflation?", opts:["Greedy corporations","Sustained money supply growth above real output growth","Government spending alone","Trade deficits"], a:1, ex:"Friedman's famous claim: 'Inflation is always and everywhere a monetary phenomenon.' Other things can cause one-time price changes, but SUSTAINED inflation requires sustained money growth above real growth." },
+      { type:'calc', q:"Money supply grows 12%, velocity is stable, real GDP grows 2%. What is inflation (%)?", a:10, tol:0.01, ex:"M̂ + V̂ = P̂ + Ŷ → 12 + 0 = P̂ + 2 → P̂ = 10%. Classic high-money-growth → high inflation pattern." },
+      { type:'tf', q:"In the long run, doubling the money supply will roughly double prices but leave real GDP unchanged.", a:true, ex:"Yes — that's the neutrality of money. Y stays at the Solow rate; P doubles to absorb the extra money. (Nominal GDP doubles, but only because P doubled.)" },
+      { type:'mc', q:"A gallon of gas was $1.25 in 1982 and $2.50 in 2006. The CPI doubled in that period (100 → 200). The REAL price of gas:", opts:["Doubled","Was unchanged","Halved","Tripled"], a:1, ex:"Real prices stripped of inflation: 1982 real price = $1.25. 2006 real price (in 1982 dollars) = $2.50 × (100/200) = $1.25. Same! The nominal price doubled but only because all prices doubled." },
+      { type:'mc', q:"Volatile, unpredictable inflation is more harmful than steady predictable inflation because:", opts:["It's mathematically larger","Wage and loan contracts can't adjust properly, redistributing wealth arbitrarily","It always causes recession","Predictable inflation isn't really inflation"], a:1, ex:"If everyone knows inflation will be 4%, they can build it into wages and loan rates (Fisher Effect). When inflation surprises, contracts get broken, wealth gets shuffled randomly, lending breaks down. The unpredictability is the killer." },
+      { type:'short', q:"In 2–3 sentences, explain how inflation acts like a 'tax' that's hard to avoid.", a:["money","value","cash","under","mattress","government","print","real","extract"], ex:"Strong answers: when government prints money, the value of every existing dollar falls — including cash you're holding. Even money under the mattress loses purchasing power. Unlike income tax (you can hide cash), the inflation tax can't be escaped because it taxes the money itself." },
+      { type:'tf', q:"Velocity (V) usually changes much faster than the money supply (M).", a:false, ex:"Opposite — V is generally stable, changing only slowly with payment technology, banking habits. M can change rapidly with central bank action. That's why the quantity theory blames inflation on M, not V." },
+      { type:'calc', q:"You take out a loan at 12% nominal rate. Inflation turns out to be 4%. What's your real cost of borrowing (%)?", a:8, tol:0.1, ex:"Real ≈ Nominal − Inflation = 12 − 4 = 8%. You're effectively paying 8% in real purchasing power. (If inflation had been 12%, your real cost would be 0% — a free loan!)" }
     ],
-    topics: ["Inflation rate calc","CPI vs Deflator vs PPI","Quantity Theory MV=PY","Money illusion","Fisher Effect","Real vs Nominal interest","Inflation redistributes wealth","Hyperinflation"]
+    topics: ["Inflation rate calc","CPI vs Deflator vs PPI","Quantity Theory MV=PY","Money illusion","Fisher Effect","Real vs Nominal interest","Inflation redistributes wealth","Hyperinflation","Neutrality of money","Cause of inflation","Real prices","Inflation tax"]
   },
 
   /* ---------------- CHAPTER 32 ---------------- */
@@ -638,6 +750,8 @@ const CHAPTERS = [
       { type: 'p', html: "<i class='friendly'>The big takeaway: knowing whether a recession is from AD or real shocks tells you what policy might help. AD problems? Stimulus might work. Real shocks? Policy is much more limited.</i>" }
     ],
     flashcards: [
+      { term: "Business fluctuations", def: "Ups and downs of real GDP around its long-term Solow trend." },
+      { term: "Recession", def: "Significant, widespread decline in real GDP, employment, income, and sales for more than a few months." },
       { term: "Aggregate Demand (AD)", def: "All combinations of inflation and real growth consistent with a given spending growth rate. Slope = −1." },
       { term: "Long-Run Aggregate Supply (LRAS)", def: "Vertical at the Solow growth rate. Real growth determined by real factors, not money." },
       { term: "Short-Run Aggregate Supply (SRAS)", def: "Upward-sloping due to sticky wages, sticky prices, menu costs, and nominal wage confusion." },
@@ -645,16 +759,21 @@ const CHAPTERS = [
       { term: "Aggregate Demand Shock", def: "Rapid, unexpected shift in spending growth (M̂ or v̂)." },
       { term: "Solow Growth Rate", def: "Long-run potential growth set by real factors. Where LRAS sits." },
       { term: "Sticky Wages", def: "Wages adjust slowly, especially downward. Reason SRAS slopes up." },
+      { term: "Sticky Prices", def: "Prices adjust slowly. Combines with sticky wages to make SRAS upward-sloping." },
       { term: "Menu Costs", def: "Real cost of changing posted prices. Source of price stickiness." },
       { term: "Nominal Wage Confusion", def: "Workers respond to higher nominal wages without realizing prices also rose." },
       { term: "Stagflation", def: "High inflation + low growth. Result of negative real shock (LRAS shifts left)." },
-      { term: "Shadow Banking", def: "Bank-like activity outside FDIC/regulation. Center of 2008 crisis." }
+      { term: "Animal Spirits", def: "Keynes's term for confidence/fear-driven changes in business and consumer spending. Source of AD shocks." },
+      { term: "Wealth Shock", def: "Sudden change in household wealth (stocks, housing) that shifts consumption and AD." },
+      { term: "Expected Inflation (π^e)", def: "What workers and firms expect inflation to be. Each SRAS curve corresponds to a given π^e." },
+      { term: "Shadow Banking", def: "Bank-like activity outside FDIC/regulation. Center of 2008 crisis." },
+      { term: "Short-run vs long-run AD shock effects", def: "Short run: AD shock affects both real growth and inflation. Long run: only inflation (output returns to Solow rate)." }
     ],
     formulas: [
-      { f: "M̂ + V̂ = P̂ + Ŷ", n: "Foundation of AD curve" },
+      { f: "M̂ + V̂ = P̂ + Ŷ", n: "Foundation of AD curve (dynamic quantity theory)" },
       { f: "AD slope = −1", n: "1pp ↑ in real growth = 1pp ↓ in inflation, given spending growth" },
       { f: "Long Run: Ŷ = Solow Rate", n: "LRAS is vertical there" },
-      { f: "ΔŶ = Ŷ_C × ΔC + Ŷ_I × ΔI + ...", n: "Spending growth from C, I, G, NX components" }
+      { f: "ΔŶ = ΔC + ΔI + ΔG + ΔNX (growth contributions)", n: "Spending growth from C, I, G, NX components" }
     ],
     graphs: [
       { id: 'adas', title: "AD-AS Model", desc: "AD downward-sloping; LRAS vertical at Solow rate; SRAS upward-sloping. Long-run equilibrium where all three meet." }
@@ -668,9 +787,18 @@ const CHAPTERS = [
       { type:'mc', q:"Which is a SUPPLY-side (real) shock, not a demand-side shock?", opts:["A stock market crash reducing wealth","A consumer confidence collapse","An oil price spike","A government stimulus package"], a:2, ex:"Oil affects PRODUCTION costs and capacity → shifts LRAS. The others all shift AD by changing spending. Knowing which kind of shock matters because it determines whether output and inflation move together (AD) or opposite directions (real)." },
       { type:'tf', q:"Sticky wages explain why SRAS slopes upward.", a:true, ex:"Yes — along with sticky prices, menu costs, and nominal wage confusion. If wages adjusted instantly to every price change, SRAS would be vertical (= LRAS) and AD shocks couldn't affect real output even short-term." },
       { type:'short', q:"Explain in 2–3 sentences how the Great Recession involved both real shocks AND an AD shock.", a:["shadow","credit","aggregate demand","oil","housing","financial","banks","spending","collapse"], ex:"Strong answers cover: the run on shadow banks froze credit and collapsed aggregate demand (negative AD shock). At the same time, oil prices spiked in 2007–08 (real shock), making production costlier. Both forces hit simultaneously, deepening the recession." },
-      { type:'mc', q:"Which would shift the AD curve OUTWARD (right)?", opts:["A spike in oil prices","Consumers becoming fearful","An increase in government spending","Higher taxes"], a:2, ex:"More G → higher spending growth → AD shifts right. Oil prices shift LRAS (real shock). Fear and higher taxes shift AD LEFT, not right." }
+      { type:'mc', q:"Which would shift the AD curve OUTWARD (right)?", opts:["A spike in oil prices","Consumers becoming fearful","An increase in government spending","Higher taxes"], a:2, ex:"More G → higher spending growth → AD shifts right. Oil prices shift LRAS (real shock). Fear and higher taxes shift AD LEFT, not right." },
+      { type:'short', q:"In 2–3 sentences, explain how the dynamic quantity theory equation gives us the AD curve.", a:["spending","M̂","V̂","P̂","Ŷ","combinations","slope","add","total"], ex:"Strong answers: M̂ + V̂ = P̂ + Ŷ. Holding spending growth (M̂ + V̂) constant, any combination of inflation P̂ and real growth Ŷ that adds up to that total is on the AD curve. That gives the AD curve a slope of −1: a 1pp rise in real growth requires a 1pp drop in inflation." },
+      { type:'mc', q:"In the LONG run, an AD shock has what effect on real growth?", opts:["Permanent boost","Permanent decline","No effect — real growth returns to the Solow rate","Doubles the growth rate"], a:2, ex:"Long-run neutrality of money. In the short run AD shocks move real output, but as expectations and wages/prices adjust, output returns to the Solow rate. Only inflation persists from sustained money growth." },
+      { type:'mc', q:"A POSITIVE real shock (e.g., the Internet revolution) most likely causes:", opts:["Higher growth + lower inflation","Higher growth + higher inflation","Lower growth + lower inflation","Stagflation"], a:0, ex:"LRAS shifts right. Along the existing AD curve, real growth rises and inflation falls. The 1990s tech boom showed exactly this combination — fast growth with low inflation surprised many forecasters." },
+      { type:'tf', q:"Each SRAS curve corresponds to a particular expected inflation rate (π^e).", a:true, ex:"Yes — when expected inflation changes, the whole SRAS curve shifts. After workers/firms learn the new inflation reality, SRAS shifts to a new position aligned with their new π^e. This is what brings the economy back to long-run equilibrium." },
+      { type:'mc', q:"What's the BIG difference between AD shocks and real shocks visible on the graph?", opts:["AD shocks are bigger","Real shocks always cause stagflation","AD shocks move output and inflation in the SAME direction; real shocks move them in OPPOSITE directions","They're identical"], a:2, ex:"Negative AD shock: both ↓ (lower growth + lower inflation). Negative real shock: opposite (lower growth + HIGHER inflation = stagflation). This pattern lets policymakers diagnose what kind of shock just hit." },
+      { type:'short', q:"In 2–3 sentences, explain why the SHORT-RUN aggregate supply curve slopes UPWARD.", a:["sticky","wage","price","menu","nominal","confusion","slow","adjust"], ex:"Strong answers cover: in the short run, wages and prices don't adjust instantly. Sticky wages mean firms can profit from selling at higher prices without immediately paying higher wages. Menu costs slow price adjustment. Nominal wage confusion makes workers supply more labor when nominal wages rise. All this lets output rise temporarily when AD increases — that's the upward slope." },
+      { type:'mc', q:"Which is NOT a typical AD shock?", opts:["A consumer confidence collapse","A government stimulus package","An oil price spike","A stock market crash"], a:2, ex:"Oil price spike = REAL/supply-side shock (affects production costs). The others all change SPENDING growth → AD shocks." },
+      { type:'tf', q:"Changes in C, I, G, or NX growth rates tend to be PERMANENT shifts in AD.", a:false, ex:"They tend to be TEMPORARY. Consumer panic eventually fades; war spending eventually winds down. Only sustained M̂ growth shifts AD permanently. That's why long-run inflation comes from monetary policy, not fiscal policy." },
+      { type:'short', q:"Compare the COVID-19 recession to the Great Recession in terms of shock type.", a:["pandemic","real","AD","both","supply","demand","lockdown","fear","credit"], ex:"Strong answers: COVID hit with simultaneous negative real shock (production disrupted, supply chains broken) AND negative AD shock (lockdowns crushed spending). The Great Recession was primarily an AD shock (shadow banking run → credit collapse → spending fell), with a smaller real shock from oil. Both involved both, but the COVID real shock was much larger relative to history." }
     ],
-    topics: ["AD curve","LRAS curve","SRAS curve","Real shocks","AD shocks","Sticky wages","Stagflation","Great Recession","Solow growth rate"]
+    topics: ["AD curve","LRAS curve","SRAS curve","Real shocks","AD shocks","Sticky wages","Stagflation","Great Recession","Solow growth rate","Short vs long run AD effects","Dynamic quantity theory and AD","Component shocks (C/I/G/NX)"]
   }
 ];
 
@@ -910,8 +1038,13 @@ function renderDashboard() {
     </div>
 
     <h3>📈 Per-Chapter Progress</h3>
+    <p style="font-size:13px;color:var(--text-mute);margin-top:-8px;">
+      <span style="color:var(--gold);">★</span> = on prof's official key concepts list. Ch 29 is foundational background but not on the prof's list — lower priority for exam.
+    </p>
     ${CHAPTERS.map(ch => {
       const subm = state.quizSubmitted[ch.id];
+      const onProfList = ch.id !== 29;
+      const star = onProfList ? '<span style="color:var(--gold);margin-right:6px;" title="On prof key concepts list">★</span>' : '<span style="color:var(--text-mute);margin-right:6px;" title="Not on prof key concepts list">○</span>';
       let score = '';
       if (subm) {
         let q = 0, ok = 0;
@@ -926,7 +1059,7 @@ function renderDashboard() {
         score = '<span style="color:var(--text-mute);">Not started</span>';
       }
       return `<div class="card card-tight" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;" onclick="switchTab(${ch.id})">
-        <div><b style="color:var(--peach);">Ch ${ch.id}</b> — ${ch.title}</div>
+        <div>${star}<b style="color:var(--peach);">Ch ${ch.id}</b> — ${ch.title}</div>
         <div>${score}</div>
       </div>`;
     }).join('')}
