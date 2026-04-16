@@ -1,5 +1,5 @@
-# jjmarre.github.io <Macro Final>
-<!DOCTYPE html>
+# jjmarre.github.io
+<!Macro Final>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
